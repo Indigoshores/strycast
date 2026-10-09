@@ -1159,6 +1159,8 @@ public:
                 .prefill_rollback = true,
             },
         .persistence = persistence_,
+        .prefill_step_tokens = std::min<std::size_t>(
+            max_context_, hip::QwenGpuArena::kMaxPromptBatch),
     };
   }
 
@@ -2499,6 +2501,7 @@ public:
                 .partial_prefill_retention = true,
             },
         .persistence = persistence_,
+        .prefill_step_tokens = model_->PrefillCapacity(),
     };
   }
 
