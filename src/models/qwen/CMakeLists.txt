@@ -25,6 +25,13 @@ target_sources(gufo_core PRIVATE
    ${PROJECT_SOURCE_DIR}/src/models/qwen/dflash_weights.cpp)
 
 if (ENGINE_ENABLE_HIP)
+  option(GUFO_QWEN_IQ_PREFILL
+    "Enable experimental routed IQ3_S/IQ4_XS MoE prefill" OFF)
+  if (GUFO_QWEN_IQ_PREFILL)
+    set_property(SOURCE ${PROJECT_SOURCE_DIR}/src/models/qwen/hip/prefill_chunk.cpp
+      TARGET_DIRECTORY gufo_core
+      APPEND PROPERTY COMPILE_DEFINITIONS GUFO_QWEN_IQ_PREFILL=1)
+  endif()
   find_package(OpenSSL REQUIRED COMPONENTS Crypto)
   target_link_libraries(gufo_core PRIVATE OpenSSL::Crypto)
   target_link_libraries(gufo_core PRIVATE gufo_cache_hip)

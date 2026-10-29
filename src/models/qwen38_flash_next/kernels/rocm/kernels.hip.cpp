@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <type_traits>
 
+#include "src/models/qwen/hip/quant_ops.hpp"
 #include "src/models/qwen38_flash_next/mtp_sampling.hpp"
 
 // HIP kernels follow the layouts and operator formulas in reference.cpp.
@@ -5095,6 +5096,10 @@ __device__ __forceinline__ std::size_t RoutedF16RowBytes(std::size_t k) {
   return kType == WeightType::kQ4_K   ? (k / 256) * sizeof(Q4KBlock)
          : kType == WeightType::kQ5_K ? (k / 256) * kQ5KBlockBytes
          : kType == WeightType::kQ6_K ? (k / 256) * kQ6KBlockBytes
+         : kType == WeightType::kIQ3_S
+             ? (k / 256) * sizeof(gufo::hip::IQ3SBlock)
+         : kType == WeightType::kIQ4_XS
+             ? (k / 256) * sizeof(gufo::hip::IQ4XSBlock)
          : kType == WeightType::kQ5_1 ? (k / 32) * sizeof(Q5_1Block)
                                       : (k / 32) * sizeof(Q8_0Block);
 }
@@ -5151,7 +5156,9 @@ __launch_bounds__(256) __global__
   // Q6_K is staged like Q8_0: its 6-bit codes are assembled into one byte
   // per element at fetch time, with a scale per 16-element half.
   constexpr bool kQ6 = kType == WeightType::kQ6_K;
-  constexpr bool kByteCodes = kQ8 || kQ6;
+  constexpr bool kIq =
+      kType == WeightType::kIQ3_S || kType == WeightType::kIQ4_XS;
+  constexpr bool kByteCodes = kQ8 || kQ6 || kIq;
   constexpr bool kKQuant = kType == WeightType::kQ4_K || kQ5K;
   // Paired gate/up tiles: K-quants keep their codes in registers, eight gate
   // and eight up rows per wave; byte codes stage both projections through
@@ -5347,6 +5354,19 @@ __launch_bounds__(256) __global__
         const std::uint32_t sc_lo = blk[192 + (8 * n) + (2 * qd)];
         const std::uint32_t sc_hi = blk[193 + (8 * n) + (2 * qd)];
         f_dm[u] = d_bits | (sc_lo << 16U) | (sc_hi << 24U);
+      } else if constexpr (kIq) {
+        // Decode only this tile's K32 slice. Signed code bytes and two
+        // K16 scales reuse the Q6/Q8 LDS layout; no full FP16 weight copy.
+        constexpr auto type = static_cast<core::GgmlType>(kType);
+        const std::size_t sub16 = static_cast<std::size_t>(kb0 + f_c) * 2;
+        gufo::hip::QuantSub16 lo;
+        gufo::hip::QuantSub16 hi;
+        gufo::hip::DecodeQuantSub16(type, f_ptr[u], sub16, lo);
+        gufo::hip::DecodeQuantSub16(type, f_ptr[u], sub16 + 1, hi);
+        __builtin_memcpy(&f_codes[u], lo.q, 16);
+        __builtin_memcpy(&f_codes_hi[u], hi.q, 16);
+        f_dm[u] = __builtin_bit_cast(std::uint32_t,
+                                     __floats2half2_rn(lo.scale, hi.scale));
       } else if constexpr (kQ8) {
         // block_q8_0 is 34 bytes, so the code loads are 2-byte aligned.
         const auto* blk = f_ptr[u] + ((kb0 + f_c) * 34);
@@ -5437,6 +5457,8 @@ __launch_bounds__(256) __global__
         s_high[(f_c * BM) + row] = f_high[u];
       }
       if constexpr (kQ8) {
+      } else if constexpr (kIq) {
+        scale_bias = f_live[u] ? f_dm[u] : 0U;
       } else if constexpr (kQ6) {
         // half2 (d * scale of elements 0-15, d * scale of 16-31); the -32
         // code offset is taken out by the magic constant.
@@ -5500,7 +5522,7 @@ __launch_bounds__(256) __global__
 
   // 1024 + q as F16 minus the magic: Q8_0 carries q + 128 (1152), Q6_K an
   // unsigned code whose zero is 32 (1056), the rest are unsigned (1024).
-  constexpr float kMagic = kQ8 ? -1152.0F : kQ6 ? -1056.0F : -1024.0F;
+  constexpr float kMagic = (kQ8 || kIq) ? -1152.0F : kQ6 ? -1056.0F : -1024.0F;
   const __half2 magic = __floats2half2_rn(kMagic, kMagic);
   const auto compute_stage = [&]() {
     uint4 raw[kWaveRowTiles][BK];
@@ -5594,7 +5616,7 @@ __launch_bounds__(256) __global__
                                             c1.x, c1.y, c1.z, c1.w};
 #pragma unroll
             for (int i = 0; i < 8; ++i) {
-              nib[i] = kQ8 ? (words[i] ^ 0x80808080U) : words[i];
+              nib[i] = (kQ8 || kIq) ? (words[i] ^ 0x80808080U) : words[i];
             }
           } else if constexpr (kQ5) {
             // Q5_1: elements 0-15 take the low nibbles of the 16 code
@@ -5628,7 +5650,7 @@ __launch_bounds__(256) __global__
           __half2 h[16];
 #pragma unroll
           for (int i = 0; i < 8; ++i) {
-            if constexpr (kQ6) {
+            if constexpr (kQ6 || kIq) {
               // nib[0..3] are elements 0-15, nib[4..7] elements 16-31.
               const __half2 half_scale = i < 4 ? scale2 : __high2half2(sb);
               CodesToHalves(nib[i], magic, half_scale, __float2half2_rn(0.0F),
@@ -6477,6 +6499,18 @@ bool LaunchRoutedF16(const void* w, WeightType type, const __half* x,
                          pad_bounds, rows_in, rows_out, swiglu_gate, out,
                          out_half, m, k, nullptr);
       return true;
+    case WeightType::kIQ3_S:
+      hipLaunchKernelGGL(
+          (RoutedF16GEMMKernel<WeightType::kIQ3_S, kBM, BN, kBK>), grid,
+          dim3(kThreads), 0, stream, w, x, tiles, pad_bounds, rows_in, rows_out,
+          swiglu_gate, out, out_half, m, k, nullptr);
+      return true;
+    case WeightType::kIQ4_XS:
+      hipLaunchKernelGGL(
+          (RoutedF16GEMMKernel<WeightType::kIQ4_XS, kBM, BN, kBK>), grid,
+          dim3(kThreads), 0, stream, w, x, tiles, pad_bounds, rows_in, rows_out,
+          swiglu_gate, out, out_half, m, k, nullptr);
+      return true;
     case WeightType::kQ5_K:
       if constexpr (BN > 48) {
         return false;
@@ -6500,7 +6534,8 @@ bool RoutedF16Gemm(const void* w, WeightType type, const __half* x,
                    std::size_t m, std::size_t k, hipStream_t stream) {
   const std::size_t block_elems =
       (type == WeightType::kQ4_K || type == WeightType::kQ5_K ||
-       type == WeightType::kQ6_K)
+       type == WeightType::kQ6_K || type == WeightType::kIQ3_S ||
+       type == WeightType::kIQ4_XS)
           ? 256
           : 64;
   if (m == 0 || k == 0 || k % block_elems != 0 || n_tiles == 0 ||
@@ -6565,6 +6600,18 @@ bool LaunchRoutedGatedF16(const void* gate, const void* up, WeightType type,
           dim3(kThreads), 0, stream, gate, x, tiles, pad_bounds, rows_in,
           rows_out, nullptr, nullptr, out, m, k, up);
       return true;
+    case WeightType::kIQ3_S:
+      hipLaunchKernelGGL(
+          (RoutedF16GEMMKernel<WeightType::kIQ3_S, 128, BN, 2, true>), grid,
+          dim3(kThreads), 0, stream, gate, x, tiles, pad_bounds, rows_in,
+          rows_out, nullptr, nullptr, out, m, k, up);
+      return true;
+    case WeightType::kIQ4_XS:
+      hipLaunchKernelGGL(
+          (RoutedF16GEMMKernel<WeightType::kIQ4_XS, 128, BN, 2, true>), grid,
+          dim3(kThreads), 0, stream, gate, x, tiles, pad_bounds, rows_in,
+          rows_out, nullptr, nullptr, out, m, k, up);
+      return true;
     default:
       return false;
   }
@@ -6572,12 +6619,14 @@ bool LaunchRoutedGatedF16(const void* gate, const void* up, WeightType type,
 
 bool RoutedGatedF16Supported(WeightType type) {
   return type == WeightType::kQ4_K || type == WeightType::kQ5_K ||
-         type == WeightType::kQ6_K || type == WeightType::kQ8_0;
+         type == WeightType::kQ6_K || type == WeightType::kQ8_0 ||
+         type == WeightType::kIQ3_S || type == WeightType::kIQ4_XS;
 }
 
 bool RoutedF16WideTilesSupported(WeightType type) {
   return type == WeightType::kQ5_1 || type == WeightType::kQ6_K ||
-         type == WeightType::kQ8_0;
+         type == WeightType::kQ8_0 || type == WeightType::kIQ3_S ||
+         type == WeightType::kIQ4_XS;
 }
 
 bool RoutedGatedF16Gemm(const void* gate, const void* up, WeightType type,

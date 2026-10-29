@@ -21,6 +21,7 @@
 #include "src/core/hip/hip_utils.hpp"
 #include "src/core/model_config.hpp"
 #include "src/core/quant/ggml_dequant.hpp"
+#include "src/core/quant/ggml_gemm.hpp"
 #include "src/models/qwen/hip/executor.hpp"
 #include "src/models/qwen/hip/ops/gemm.hpp"
 #include "src/models/qwen/hip/ops/moe.hpp"
@@ -649,11 +650,34 @@ std::vector<std::uint8_t> RandomQ45K(std::size_t rows, std::size_t cols,
   return out;
 }
 
+/// Random IQ payloads exercise both sign/codebook bits and all scale bits.
+/// Zero superblocks check that staging does not retain a prior tile's scale.
+std::vector<std::uint8_t> RandomIq(GgmlType type, std::size_t rows,
+                                   std::size_t cols) {
+  const std::size_t block_bytes = type == GgmlType::kIQ3_S
+                                      ? sizeof(gufo::quant::block_iq3_s)
+                                      : sizeof(gufo::quant::block_iq4_xs);
+  std::vector<std::uint8_t> out(rows * (cols / 256) * block_bytes);
+  for (std::size_t b = 0; b < out.size() / block_bytes; ++b) {
+    auto* blk = out.data() + b * block_bytes;
+    const std::uint16_t d =
+        FloatToFp16Bits(b % 17 == 0 ? 0.0F : RndFloat(0.0001F, 0.0004F));
+    std::memcpy(blk, &d, sizeof(d));
+    for (std::size_t i = 2; i < block_bytes; ++i) {
+      blk[i] = static_cast<std::uint8_t>(Rnd() >> 24U);
+    }
+  }
+  return out;
+}
+
 /// Expert weights of `type` for `rows` x `cols`: Q8_0 quantized from uniform
 /// values, the K-quants as random payloads.
 std::vector<std::uint8_t> RandomExperts(GgmlType type, std::size_t rows,
                                         std::size_t cols) {
   switch (type) {
+    case GgmlType::kIQ3_S:
+    case GgmlType::kIQ4_XS:
+      return RandomIq(type, rows, cols);
     case GgmlType::kQ6_K:
       return RandomQ6K(rows, cols);
     case GgmlType::kQ4_K:
@@ -681,11 +705,13 @@ struct RoutedCase {
   const char* name;
 };
 
-constexpr std::array<RoutedCase, 4> kRoutedCases{{
+constexpr std::array<RoutedCase, 6> kRoutedCases{{
     {GgmlType::kQ8_0, routed::WeightType::kQ8_0, "Q8_0"},
     {GgmlType::kQ6_K, routed::WeightType::kQ6_K, "Q6_K"},
     {GgmlType::kQ5_K, routed::WeightType::kQ5_K, "Q5_K"},
     {GgmlType::kQ4_K, routed::WeightType::kQ4_K, "Q4_K"},
+    {GgmlType::kIQ3_S, routed::WeightType::kIQ3_S, "IQ3_S"},
+    {GgmlType::kIQ4_XS, routed::WeightType::kIQ4_XS, "IQ4_XS"},
 }};
 
 /// Flash-Next's routed F16 expert GEMM on this model's expert shapes, against
@@ -700,7 +726,8 @@ void CheckRoutedF16(hipStream_t stream) {
     const auto weight_type = routed_case.weight_type;
     const char* type_name = routed_case.name;
     const bool wide = routed::RoutedF16WideTilesSupported(weight_type);
-    Expect(wide == (type == GgmlType::kQ8_0 || type == GgmlType::kQ6_K),
+    Expect(wide == (type == GgmlType::kQ8_0 || type == GgmlType::kQ6_K ||
+                    type == GgmlType::kIQ3_S || type == GgmlType::kIQ4_XS),
            std::string("unexpected wide-tile support for ") + type_name);
     constexpr std::uint32_t kExperts = 64;
     constexpr std::uint32_t kUsed = 8;
@@ -1244,6 +1271,129 @@ void CheckDecodeBatchInvariance(hipStream_t stream) {
 
 }  // namespace
 
+// Independent CPU dequantization and FP64 dot products, including an output
+// tail beyond a 128-row block, empty experts and partially filled token tiles.
+void CheckIqCpuOracle(hipStream_t stream) {
+  constexpr std::uint32_t experts = 3;
+  constexpr std::uint32_t used = 2;
+  constexpr std::size_t m = 129;
+  constexpr std::size_t k = 512;
+  for (const auto& item : kRoutedCases) {
+    if (item.type != GgmlType::kIQ3_S && item.type != GgmlType::kIQ4_XS) {
+      continue;
+    }
+    const auto weights = RandomIq(item.type, experts * m, k);
+    double worst_relative = 0;
+    const std::size_t row_bytes = weights.size() / (experts * m);
+    std::vector<float> decoded(experts * m * k);
+    std::vector<float> dispatched(k);
+    std::vector<float> dot_input(k, 0.125F);
+    for (std::size_t row = 0; row < experts * m; ++row) {
+      if (item.type == GgmlType::kIQ3_S) {
+        gufo::quant::DequantizeIQ3_S(weights.data() + row * row_bytes,
+                                     decoded.data() + row * k, k);
+      } else {
+        gufo::quant::DequantizeIQ4_XS(weights.data() + row * row_bytes,
+                                      decoded.data() + row * k, k);
+      }
+      // The CPU model oracle must reach the canonical IQ routines through
+      // the generic dispatcher too (it previously aborted on these types).
+      gufo::quant::Dequantize(item.type, weights.data() + row * row_bytes,
+                              dispatched.data(), k);
+      double dot = 0;
+      for (std::size_t col = 0; col < k; ++col) {
+        Expect(dispatched[col] == decoded[row * k + col],
+               "CPU IQ dequant dispatcher changed the canonical value");
+        dot += static_cast<double>(dispatched[col]) * dot_input[col];
+      }
+      const float dispatched_dot = gufo::quant::Dot(
+          item.type, weights.data() + row * row_bytes, dot_input, k);
+      Expect(std::fabs(dispatched_dot - dot) <
+                 1e-5 * std::max(1.0, std::fabs(dot)),
+             "CPU IQ dot dispatcher disagrees with dequantized values");
+    }
+    gufo::test::DeviceBuffer<std::uint8_t> d_w(weights);
+    for (const bool per_slot : {false, true}) {
+      for (const std::uint32_t tokens : {1U, 8U, 9U, 32U, 33U}) {
+        const std::size_t slots = tokens * used;
+        std::vector<std::int32_t> ids(slots);
+        // Expert 2 stays empty, and both populated experts contain padding.
+        for (std::size_t i = 0; i < slots; ++i) {
+          ids[i] = static_cast<std::int32_t>(i % used);
+        }
+        std::vector<float> x((per_slot ? slots : tokens) * k);
+        for (auto& v : x) {
+          v = RndFloat(-0.1F, 0.1F);
+        }
+        std::vector<double> expected(slots * m);
+        double magnitude = 0;
+        for (std::size_t slot = 0; slot < slots; ++slot) {
+          for (std::size_t row = 0; row < m; ++row) {
+            double sum = 0;
+            for (std::size_t col = 0; col < k; ++col) {
+              sum += static_cast<double>(
+                         decoded[(ids[slot] * m + row) * k + col]) *
+                     static_cast<double>(
+                         x[(per_slot ? slot : slot / used) * k + col]);
+            }
+            expected[slot * m + row] = sum;
+            magnitude = std::max(magnitude, std::fabs(sum));
+          }
+        }
+        gufo::test::DeviceBuffer<std::int32_t> d_ids(ids);
+        gufo::test::DeviceBuffer<float> d_x(x);
+        gufo::test::DeviceBuffer<std::uint16_t> d_x_half(x.size());
+        gufo::test::DeviceBuffer<std::uint32_t> d_counts(experts);
+        const auto compact_rows = gufo::hip::RoutedRows(slots, experts);
+        gufo::test::DeviceBuffer<std::int32_t> d_bounds(experts + 1);
+        gufo::test::DeviceBuffer<std::int32_t> d_cursors(experts);
+        gufo::test::DeviceBuffer<std::int32_t> d_token(compact_rows);
+        gufo::test::DeviceBuffer<std::int32_t> d_slot(compact_rows);
+        routed::ExpertCounts(d_ids.data(), d_counts.data(), tokens, experts,
+                             used, stream);
+        routed::RoutedCompact(d_ids.data(), d_counts.data(), d_bounds.data(),
+                              d_cursors.data(), d_token.data(), d_slot.data(),
+                              tokens, used, experts, stream);
+        routed::NarrowActivations(d_x.data(), d_x_half.data(), false, x.size(),
+                                  stream);
+        for (const std::uint32_t tile_rows : {16U, 48U, 64U, 128U}) {
+          std::vector<std::int32_t> tiles;
+          for (std::uint32_t e = 0; e < used; ++e) {
+            const auto padded = (tokens + 15U) / 16U * 16U;
+            for (std::uint32_t j = 0; j * tile_rows < padded; ++j) {
+              tiles.push_back(static_cast<std::int32_t>(e | (j << 16)));
+            }
+          }
+          gufo::test::DeviceBuffer<std::int32_t> d_tiles(tiles);
+          gufo::test::DeviceBuffer<float> d_out(std::vector<float>(
+              slots * m, std::numeric_limits<float>::quiet_NaN()));
+          Expect(routed::RoutedF16Gemm(
+                     d_w.data(), item.weight_type,
+                     reinterpret_cast<const __half*>(d_x_half.data()),
+                     d_tiles.data(), static_cast<std::uint32_t>(tiles.size()),
+                     tile_rows, d_bounds.data(),
+                     per_slot ? d_slot.data() : d_token.data(), d_slot.data(),
+                     nullptr, d_out.data(), nullptr, m, k, stream),
+                 "IQ CPU-oracle shape rejected");
+          const auto got = d_out.CopyToHost();
+          double error = 0;
+          for (std::size_t i = 0; i < got.size(); ++i) {
+            Expect(std::isfinite(got[i]),
+                   "IQ CPU-oracle output non-finite/unwritten");
+            error = std::max(error, std::fabs(got[i] - expected[i]));
+          }
+          const double relative = error / std::max(magnitude, 1e-12);
+          worst_relative = std::max(worst_relative, relative);
+          Expect(relative < 1e-2,
+                 "IQ routed prefill disagrees with independent CPU oracle");
+        }
+      }
+    }
+    std::cout << "IQ CPU oracle " << item.name
+              << " worst_relative=" << worst_relative << ": OK\n";
+  }
+}
+
 int main() {
   const int gate = gufo::test::GateHipDevice(
       gufo::test::HipDeviceRequirement::kRequired, "qwen35ba3b_moe_ops_test");
@@ -1261,6 +1411,7 @@ int main() {
     CheckDenseBf16Tiled(nullptr);
     CheckRoutedF16(nullptr);
     CheckRoutedPair(nullptr);
+    CheckIqCpuOracle(nullptr);
     CheckDecodeBatchInvariance(nullptr);
     CheckSharedPathBatchInvariance(f, nullptr);
     CheckSsmPathBatchInvariance(nullptr);

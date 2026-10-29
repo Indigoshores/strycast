@@ -77,6 +77,14 @@ std::optional<routed::WeightType> RoutedWeightType(core::GgmlType type,
       return routed::WeightType::kQ5_K;
     case core::GgmlType::kQ6_K:
       return routed::WeightType::kQ6_K;
+#if defined(GUFO_QWEN_IQ_PREFILL)
+    // Experimental build opt-in; decode and existing K-quant routes are
+    // unchanged. Keep disabled until this model's numerical qualification.
+    case core::GgmlType::kIQ3_S:
+      return routed::WeightType::kIQ3_S;
+    case core::GgmlType::kIQ4_XS:
+      return routed::WeightType::kIQ4_XS;
+#endif
     default:
       return std::nullopt;
   }

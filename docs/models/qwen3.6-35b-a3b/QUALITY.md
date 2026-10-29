@@ -6,6 +6,31 @@ and GGUF-conversion parity are not qualified here.
 
 ## What the target test checks
 
+### Experimental IQ4_XS coverage (October 29, 2026)
+
+With `GUFO_QWEN_IQ_PREFILL=ON`, the synthetic MoE test additionally checks
+IQ3_S and IQ4_XS routed F16 and paired gate/up tiles against the per-slot
+reference. Independent CPU dequantization plus FP64 dot products check 129-row
+output tails, an empty expert, per-token/per-slot inputs, token counts
+1/8/9/32/33, and tile widths 16/48/64/128. Worst normalized error was
+0.000451561 for IQ3_S and 0.000438793 for IQ4_XS, below the unchanged 1e-2
+operator threshold. Paired IQ errors stayed below the unchanged 5e-3
+threshold. Decode batch-invariance checks also pass for these two formats.
+
+The CPU reference initially aborted because generic `quant::Dot` did not
+dispatch the already implemented IQ3_S/IQ4_XS routines. `Dot` and `Dequantize`
+now dispatch those types; the synthetic test checks the generic CPU dispatcher
+against the canonical IQ routines, and `ggml_gemm_parity_test` passes.
+
+**Full target qualification is still FAIL.** On the downloaded 733-tensor
+IQ4_XS checkpoint, both option-on and option-off runs pass the two CPU/GPU
+greedy fixtures, prefill/decode greedy comparison, and 1100-token one-chunk
+versus split greedy comparison. The candidate then fails bit-exact serial
+verification; the control passes that check but fails concurrent verification.
+Thus the serial mismatch must not be dismissed as a reproduced baseline
+failure. Tests and thresholds are unchanged. The candidate remains default-off;
+task accuracy, MTP and concurrent execution are not certified for this IQ file.
+
 `qwen35ba3b_target_test` (gated by `GUFO_QWEN35BA3B_MODEL`, skipped when unset)
 requires the loaded config to report an MoE architecture, then runs:
 

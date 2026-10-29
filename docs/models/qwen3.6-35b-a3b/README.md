@@ -31,6 +31,28 @@ converted (below).
 
 ## Load and run
 
+### Experimental IQ4_XS prefill (Windows, October 29, 2026)
+
+`GUFO_QWEN_IQ_PREFILL=ON` is a build-time opt-in for routed IQ3_S gate/up
+and IQ4_XS down prefill. It decodes packed IQ weights inside the existing
+F16 WMMA tiles; it does not expand the model to a full FP16 weight copy.
+The default is OFF, and existing K-quant routes are unchanged.
+
+The 17.73 GB non-MTP `Qwen3.6-35B-A3B-UD-IQ4_XS.gguf` reached 3,193 tok/s
+at native pp2048 versus 266 with the option off, and 3,105 versus 259 tok/s
+in an identical-input HTTP screen. These are experimental Windows/TheRock
+10.0.0 results; see [Benchmarks](BENCHMARKS.md).
+
+**Not production-qualified:** operator checks and the tested CPU/GPU greedy
+fixtures pass, but the model target test fails bit-exact serial verification
+after optimized prefill. The option-off control also fails concurrent
+verification. No assertion or tolerance was relaxed; see [Quality](QUALITY.md).
+Do not infer MTP, concurrent-serving, or quality qualification from these timings.
+
+Enable it only in a separate experimental build with
+`cmake --preset windows-release -DGUFO_QWEN_IQ_PREFILL=ON`, retaining the
+same SDK/dependency configuration used for the control.
+
 ```sh
 nix build
 MODEL=path/to/Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf

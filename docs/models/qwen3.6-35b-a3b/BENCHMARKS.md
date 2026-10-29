@@ -1,5 +1,25 @@
 # Qwen3.6 35B-A3B benchmarks
 
+## Experimental IQ4_XS Windows screen (October 29, 2026)
+
+These timings are **not a qualified default**; [Quality](QUALITY.md) records
+the remaining verification parity failures. Same 17,730,509,792-byte IQ4_XS
+GGUF, gfx1151 / 128 GiB Strix Halo, native Windows 11, TheRock 10.0.0,
+RelWithDebInfo, testing enabled in both builds, speculation off. Only
+`GUFO_QWEN_IQ_PREFILL` differs between the matched control and candidate.
+
+- Native `gufo bench -p 512,2048 -n 128 -r 2`, after each shape's warmup:
+  pp512 290.38 -> 2,198.64 tok/s; pp2048 266.05 -> 3,192.83 tok/s;
+  separate zero-depth tg128 56.69 -> 57.84 tok/s. The latter is not evidence
+  of a decode-kernel change.
+- Identical-input HTTP `/completion`, one session, context capacity 8192,
+  prefill chunk 2048, greedy, no cache reuse, 1950 input / 128 output tokens,
+  one excluded warmup then two measured requests: mean prefill
+  258.66 -> 3,105.22 tok/s; decode 56.54 -> 56.87 tok/s; complete-request
+  wall 9,837.02 -> 2,900.89 ms. Prompt hashes and token counts match.
+
+The reference K-quant benchmark results below remain separate measurements.
+
 AMD Strix Halo `gfx1151`, 128 GB unified memory. Gufo versus llama.cpp
 `b11069` (`68d9053a`), both compiled with the pinned ROCm 7.2.3 toolchain.
 Targets are the Unsloth UD-Q4_K_XL / UD-Q6_K_XL / UD-Q8_K_XL files and the

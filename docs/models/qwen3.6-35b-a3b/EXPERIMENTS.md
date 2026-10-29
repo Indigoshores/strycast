@@ -1,5 +1,16 @@
 # Qwen3.6 35B-A3B experiments
 
+## Experimental routed IQ prefill (Windows, October 29, 2026)
+
+Implemented, kept default-off pending full qualification: IQ3_S and IQ4_XS
+tile-local dequantization reuses the routed F16 WMMA byte-code/scale staging,
+including paired gate/up and wide down tiles. No full-model FP16 weight copy
+and no GPU decode changes. The operator/independent CPU checks pass, and
+IQ4_XS native pp2048 improves 266 -> 3193 tok/s (HTTP 259 -> 3105).
+Full-model serial-verification parity fails on the candidate; the control
+passes serial verification but fails concurrent verification. This is not a
+retained production default. [Quality](QUALITY.md), [Benchmarks](BENCHMARKS.md).
+
 | Experiment | Decision / qualification |
 | --- | --- |
 | Prefill attention templated on head shape | Retained: the fast prefill kernel was previously compiled only for the Qwen3.8 27B head shape, so this 16Q/2KV `head_dim` 256 model silently fell back to baseline (301 t/s at pp8192) and hit an illegal-memory access at pp16384. Templating on the accepted head shapes restores the fast path. |
