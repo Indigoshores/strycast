@@ -43,11 +43,13 @@ at native pp2048 versus 266 with the option off, and 3,105 versus 259 tok/s
 in an identical-input HTTP screen. These are experimental Windows/TheRock
 10.0.0 results; see [Benchmarks](BENCHMARKS.md).
 
-**Not production-qualified:** operator checks and the tested CPU/GPU greedy
-fixtures pass, but the model target test fails bit-exact serial verification
-after optimized prefill. The option-off control also fails concurrent
-verification. No assertion or tolerance was relaxed; see [Quality](QUALITY.md).
-Do not infer MTP, concurrent-serving, or quality qualification from these timings.
+The initial serial and concurrent verification failures were traced to MoE
+scratch initialization on the default HIP stream racing inference on a
+nonblocking stream. Initializing on the arena stream fixes them: the Windows
+IQ4_XS model target now passes, including exact snapshot replay, all eight
+serial rows, and three concurrent sessions (23 rows). See [Quality](QUALITY.md).
+The option remains experimental and default-off. These fixture checks do not
+establish task accuracy, MTP acceptance, or sustained concurrent-serving quality.
 
 Enable it only in a separate experimental build with
 `cmake --preset windows-release -DGUFO_QWEN_IQ_PREFILL=ON`, retaining the

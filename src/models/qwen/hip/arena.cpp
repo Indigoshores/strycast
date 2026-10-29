@@ -926,8 +926,10 @@ QwenGpuArena::QwenGpuArena(const core::ModelConfig& config,
     if (config_.IsMoE()) {
       const std::size_t moe_bytes = MoeScratchBytes(config_, batch);
       HIP_CHECK(hipMalloc(&d_moe_scratch, moe_bytes));
+      // Initialize on the arena's nonblocking stream. A default-stream memset
+      // can run late and erase live prefill/decode work at a later device sync.
       // The fused router's completion counter must start at zero.
-      HIP_CHECK(hipMemset(d_moe_scratch, 0, moe_bytes));
+      HIP_CHECK(hipMemsetAsync(d_moe_scratch, 0, moe_bytes, stream));
     }
 
     Reset();

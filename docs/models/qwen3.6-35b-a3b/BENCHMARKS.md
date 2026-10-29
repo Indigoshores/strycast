@@ -3,7 +3,8 @@
 ## Experimental IQ4_XS Windows screen (October 29, 2026)
 
 These timings are **not a qualified default**; [Quality](QUALITY.md) records
-the remaining verification parity failures. Same 17,730,509,792-byte IQ4_XS
+the verification stream-ordering fix and remaining qualification limits.
+Same 17,730,509,792-byte IQ4_XS
 GGUF, gfx1151 / 128 GiB Strix Halo, native Windows 11, TheRock 10.0.0,
 RelWithDebInfo, testing enabled in both builds, speculation off. Only
 `GUFO_QWEN_IQ_PREFILL` differs between the matched control and candidate.
@@ -19,6 +20,16 @@ RelWithDebInfo, testing enabled in both builds, speculation off. Only
   wall 9,837.02 -> 2,900.89 ms. Prompt hashes and token counts match.
 
 The reference K-quant benchmark results below remain separate measurements.
+
+After fixing scratch initialization on the inference stream, an isolated native
+repeat of the same command measured pp512 2,186.91 +/- 26.99 tok/s and pp2048
+3,218.73 +/- 12.37 tok/s. The first follow-up screen overlapped the tail of the
+operator suite and was discarded; these values come from the subsequent run
+with no competing tests. Full-model serial and concurrent verification now pass.
+Separate native tg128 measured 59.01 +/- 0.09 tok/s; HTTP prefill averaged
+3,077.33 tok/s and decode 57.71 tok/s over two 1950-input/128-output requests
+after one excluded warmup. This correctness fix preserves the fast prefill path;
+it does not introduce a decode-kernel optimization.
 
 AMD Strix Halo `gfx1151`, 128 GB unified memory. Gufo versus llama.cpp
 `b11069` (`68d9053a`), both compiled with the pinned ROCm 7.2.3 toolchain.

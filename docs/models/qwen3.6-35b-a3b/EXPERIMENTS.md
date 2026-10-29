@@ -7,9 +7,12 @@ tile-local dequantization reuses the routed F16 WMMA byte-code/scale staging,
 including paired gate/up and wide down tiles. No full-model FP16 weight copy
 and no GPU decode changes. The operator/independent CPU checks pass, and
 IQ4_XS native pp2048 improves 266 -> 3193 tok/s (HTTP 259 -> 3105).
-Full-model serial-verification parity fails on the candidate; the control
-passes serial verification but fails concurrent verification. This is not a
-retained production default. [Quality](QUALITY.md), [Benchmarks](BENCHMARKS.md).
+The initial serial/concurrent verification failures were fixed by ordering MoE
+scratch initialization on the arena's nonblocking HIP stream; no kernel
+arithmetic or assertion was weakened. Snapshot replay, all eight serial rows,
+and three concurrent sessions (23 rows) now pass on the Windows IQ4_XS fixture.
+The option remains experimental/default-off pending broader qualification.
+[Quality](QUALITY.md), [Benchmarks](BENCHMARKS.md).
 
 | Experiment | Decision / qualification |
 | --- | --- |

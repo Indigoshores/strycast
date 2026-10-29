@@ -188,6 +188,20 @@ void CheckVerificationMatchesDecode(
     decoded.emplace_back(view.begin(), view.end());
   }
   executor->RestoreSnapshot(*snapshot);
+  // A late initialization on another stream must not erase live MoE scratch
+  // during a first-use MMQ allocation. Replaying the same decode from the
+  // snapshot must reproduce every logit before comparing verification.
+  for (std::size_t r = 0; r < kRows; ++r) {
+    (void)executor->ForwardToken(candidates[r],
+                                 position + static_cast<std::uint32_t>(r));
+    const auto replayed = executor->CopyLastLogits();
+    Expect(replayed.size() == decoded[r].size(), "replay logit width mismatch");
+    Expect(std::memcmp(replayed.data(), decoded[r].data(),
+                       replayed.size_bytes()) == 0,
+           "snapshot replay changed single-token logits at row " +
+               std::to_string(r));
+  }
+  executor->RestoreSnapshot(*snapshot);
   (void)executor->ForwardVerificationChunk(candidates, position, true);
   std::size_t differing_rows = 0;
   for (std::size_t r = 0; r < kRows; ++r) {

@@ -22,14 +22,31 @@ dispatch the already implemented IQ3_S/IQ4_XS routines. `Dot` and `Dequantize`
 now dispatch those types; the synthetic test checks the generic CPU dispatcher
 against the canonical IQ routines, and `ggml_gemm_parity_test` passes.
 
-**Full target qualification is still FAIL.** On the downloaded 733-tensor
-IQ4_XS checkpoint, both option-on and option-off runs pass the two CPU/GPU
-greedy fixtures, prefill/decode greedy comparison, and 1100-token one-chunk
-versus split greedy comparison. The candidate then fails bit-exact serial
-verification; the control passes that check but fails concurrent verification.
-Thus the serial mismatch must not be dismissed as a reproduced baseline
-failure. Tests and thresholds are unchanged. The candidate remains default-off;
-task accuracy, MTP and concurrent execution are not certified for this IQ file.
+**Follow-up: the Windows IQ4_XS model target now passes.** The initial
+option-on serial failure and option-off concurrent failure exposed a stream
+ordering bug in `QwenGpuArena`: its MoE scratch clear used `hipMemset` on the
+default stream, while inference uses `hipStreamNonBlocking`. A later MMQ pool
+allocation's device synchronization could execute that clear after the scratch
+already held live outputs. Operator traces first diverged in layer 34 on the
+cold IQ route: the router, expert ids, weights and activations were populated
+before the allocation and zero afterwards. Snapshot replay then disagreed even
+with sequential decode, independently of verification arithmetic.
+
+The clear now uses `hipMemsetAsync(..., stream)` on the arena stream, ordered
+before all prefill/decode work. No IQ kernel arithmetic or tolerance changed.
+The strengthened model target additionally demands exact snapshot decode replay;
+the two CPU/GPU greedy fixtures, prefill/decode greedy check, 1100-token chunk
+greedy check, eight serial verification rows and three concurrent sessions
+(23 rows) pass on the downloaded 733-tensor IQ4_XS model. A focused manual
+`qwen35ba3b_verification_probe MODEL serial|concurrent` also compares saved
+layer outputs and logits without adding a device-wide synchronization workaround.
+The full target passes with the IQ prefill option both ON and OFF.
+
+Long-prompt split versus single-chunk logits are still not required to be exact:
+the option-on run reports max absolute difference 1.2138 and RMSE 0.219402 while
+preserving the tested greedy prediction. This differs from the exact decode /
+verification contract above. The option remains default-off; task accuracy,
+MTP acceptance, sustained concurrency and other operating systems remain unqualified.
 
 `qwen35ba3b_target_test` (gated by `GUFO_QWEN35BA3B_MODEL`, skipped when unset)
 requires the loaded config to report an MoE architecture, then runs:

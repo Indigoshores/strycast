@@ -23,6 +23,9 @@ if (ENGINE_ENABLE_HIP)
   add_executable(qwen35ba3b_verify_bench
     ${CMAKE_CURRENT_SOURCE_DIR}/verify_bench.cpp)
   target_link_libraries(qwen35ba3b_verify_bench PRIVATE gufo_core)
+  add_executable(qwen35ba3b_verification_probe
+    ${CMAKE_CURRENT_SOURCE_DIR}/verification_probe.cpp)
+  target_link_libraries(qwen35ba3b_verification_probe PRIVATE gufo_core)
 endif()
 if (ENGINE_ENABLE_HIP)
   add_executable(qwen35ba3b_prefill_chunk_bench
