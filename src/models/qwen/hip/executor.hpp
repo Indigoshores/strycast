@@ -63,12 +63,15 @@ struct QwenSampledVerificationResult {
 };
 
 struct QwenGpuWeightRegion {
-  // Original reader address for tensor offsets; host_copy owns GPU-visible
-  // immutable bytes, backed by transparent huge pages when available.
+  // Original reader address for tensor offsets. The GPU-visible bytes are a
+  // device allocation when the heap has room (device_owned), otherwise
+  // host_copy: a registered anonymous copy, backed by transparent huge pages
+  // when available.
   const void* host_data{nullptr};
   void* device_data{nullptr};
   void* host_copy{nullptr};
   std::size_t size{0};
+  bool device_owned{false};
 };
 
 struct QwenGpuMemoryUsage {
@@ -251,6 +254,10 @@ struct QwenMoeScratch {
   // The FFN or GDN pre-layer norm output as BF16 [hidden / 64][batch][64],
   // read by the router and the stacked alpha/beta GEMMs.
   std::span<std::uint16_t> x_bf16_tiled;
+  // Completion counter of the one-token fused router launch, at the start of
+  // the block for every batch; zeroed when the block is allocated, and the
+  // kernel leaves it at zero.
+  std::span<std::uint32_t> router_done;  // [1]
 };
 
 /// Row capacity of the routed buckets: each expert pads to 16 rows.
@@ -296,11 +303,14 @@ static_assert(std::is_trivially_copyable_v<QwenMoeScratch>);
 
 /// Single-token routed MoE FFN (qwen35moe) on `stream`: router and top-k,
 /// routed experts, sigmoid-gated shared expert, weighted combine into `out`.
-/// Shared by target decode and the MTP layer.
+/// Shared by target decode and the MTP layer. With `combine` false the
+/// combine is left to the caller (LaunchFusedMoeResidualRMSNorm reads the
+/// expert rows, weights, shared output and shared gate from `moe`) and
+/// `out` is not written.
 void ExecuteMoeDecodeStep(hipStream_t stream, const QwenMoeScratch& moe,
                           const models::QwenLayerWeights& layer,
                           const core::ModelConfig& config, const float* x,
-                          float* out);
+                          float* out, bool combine = true);
 static_assert(std::is_trivially_copyable_v<QwenGpuScratchView>);
 static_assert(std::is_same_v<decltype(QwenDecodeScratch::sampled_token),
                              std::span<std::uint32_t>>);
