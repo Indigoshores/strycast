@@ -1,0 +1,65 @@
+{
+  "all_cached_tokens_zero": true,
+  "gpu_memory_note": "driver-reported startup snapshots, not peak process RAM or a dual-model residency certification",
+  "input_hash_differences": [],
+  "natural_workload_metrics": {
+    "ar": {
+      "code": {
+        "acceptance": 0,
+        "pooled_tps": 56.37826157740537
+      },
+      "prose": {
+        "acceptance": 0,
+        "pooled_tps": 58.01598081919154
+      }
+    },
+    "dflash3": {
+      "code": {
+        "acceptance": 0.6666666666666666,
+        "pooled_tps": 68.77557566533689
+      },
+      "prose": {
+        "acceptance": 0.46394984326018807,
+        "pooled_tps": 56.109988113778485
+      }
+    },
+    "dflash7": {
+      "code": {
+        "acceptance": 0.4212860310421286,
+        "pooled_tps": 54.499973968811254
+      },
+      "prose": {
+        "acceptance": 0.24427480916030533,
+        "pooled_tps": 38.399498406552055
+      }
+    },
+    "mtp2": {
+      "code": {
+        "acceptance": 0.8655913978494624,
+        "pooled_tps": 77.6673674123988
+      },
+      "prose": {
+        "acceptance": 0.6238938053097345,
+        "pooled_tps": 69.17953583936382
+      }
+    }
+  },
+  "output_mismatches": [],
+  "screen_rows": 16,
+  "startup_gpu_device_used_mib": {
+    "ar": 23449,
+    "dflash3": 25492,
+    "dflash7": 25492,
+    "mtp2": 24551
+  },
+  "strict_quality_failures_retained": [
+    "ar:multi_turn",
+    "ar:tool_result",
+    "ar:parallel_1",
+    "mtp2:multi_turn",
+    "mtp2:tool_result",
+    "mtp2:parallel_1"
+  ],
+  "structured_rows": 10,
+  "validation_rows": 24
+}

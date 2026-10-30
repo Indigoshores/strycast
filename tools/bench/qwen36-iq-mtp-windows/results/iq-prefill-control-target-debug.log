@@ -1,0 +1,364 @@
+Command: C:\Users\Butch\Documents\02_Apps\strycast-bench-tools\native-fault.exe ["C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\qwen35ba3b_target_control.exe"]
+Started: 2026-10-29T18:57:23-04:00
+exception 0xc0000409 pid=22096 tid=19760 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=24224 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=18496 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=17944 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=17376 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=22740 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=16900 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=17508 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=21628 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=17848 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=16000 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=12616 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=13884 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=18192 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=15656 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=21104 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=6052 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=14776 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=23720 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=18008 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=19648 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=24528 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=4364 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=19548 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=13652 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=19932 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=23184 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=17520 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=22832 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=22216 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=23724 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34b743 _kmp_fork_call +0x923
+  #7 0x7fff2e33ec70 _kmpc_fork_call +0x50
+  #8 0x7ff7a5aeed27 gufo::models::TensorGEMV +0x177
+  #9 0x7ff7a5c0e477 gufo::models::qwen::MoeForward +0x6a7
+  #10 0x7ff7a5af04cb gufo::models::ForwardLayer +0x41b
+  #11 0x7ff7a5af068f gufo::models::ForwardModel +0xcf
+  #12 0x7ff7a5aa23a7 `anonymous namespace'::CheckCpuGpuLogitParity +0x5d7
+  #13 0x7ff7a5aa1668 main +0x348
+  #14 0x7ff7a5d2cfe4 __scrt_common_main_seh +0x10c
+  #15 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #16 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+exception 0xc0000409 pid=22096 tid=24172 first=0 address=0x7fffb57c4aee
+  #0 0x7fffb57c4aee abort +0x4e
+  #1 0x7fffb57c4aee abort +0x4e
+  #2 0x7ff7a5c0d193 gufo::quant::Dot +0x263
+  #3 0x7ff7a5aef40a gufo::models::TensorGEMV +0x85a
+  #4 0x7fff2e39f9ac _kmp_invoke_microtask +0x8c
+  #5 0x7fff2e34cd8f _kmp_get_reduce_method +0x99f
+  #6 0x7fff2e34d4cd _kmp_get_reduce_method +0x10dd
+  #7 0x7fff2e394ed5 _kmp_launch_worker +0x195
+  #8 0x7fffb794e8d7 BaseThreadInitThunk +0x17
+  #9 0x7fffb8d6c3fc RtlUserThreadStart +0x2c
+process exit 0xc0000409
+
+Completed: 2026-10-29T18:57:37-04:00; error: <nil>

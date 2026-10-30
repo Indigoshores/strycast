@@ -1,0 +1,15 @@
+Command: C:\Users\Butch\Documents\02_Apps\strycast\build\windows-release\ggml_gemm_parity_test.exe []
+Started: 2026-10-29T19:00:18-04:00
+PARITY Q3_K: PASS
+PARITY Q4_K: PASS
+PARITY Q6_K: PASS
+NEW Q5_K: PASS (dequant==canonical, finite, nonzero; OLD silent->0.0F)
+NEW Q8_0: PASS (dequant==canonical, finite, nonzero; OLD silent->0.0F)
+NEW Q8_K: PASS (dequant==canonical, finite, nonzero; OLD silent->0.0F)
+F32: PASS
+BF16: PASS
+F16: PASS
+IsSupported: PASS
+ALL_GEMM_PARITY_PASS
+
+Completed: 2026-10-29T19:00:18-04:00; error: <nil>

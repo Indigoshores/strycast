@@ -1,0 +1,3 @@
+package main
+import("crypto/sha256";"encoding/hex";"encoding/json";"fmt";"io";"os";"time")
+func main(){if len(os.Args)<3{panic("artifact-digests output.json files...")};var rows []map[string]any;for _,p:=range os.Args[2:]{f,e:=os.Open(p);if e!=nil{panic(e)};s,e:=f.Stat();if e!=nil{panic(e)};h:=sha256.New();_,e=io.Copy(h,f);f.Close();if e!=nil{panic(e)};rows=append(rows,map[string]any{"path":p,"bytes":s.Size(),"modified":s.ModTime().Format(time.RFC3339),"sha256":hex.EncodeToString(h.Sum(nil))})};b,e:=json.MarshalIndent(rows,"","  ");if e!=nil{panic(e)};if e=os.WriteFile(os.Args[1],b,0644);e!=nil{panic(e)};fmt.Println(string(b))}

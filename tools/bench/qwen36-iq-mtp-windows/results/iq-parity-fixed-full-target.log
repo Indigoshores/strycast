@@ -1,0 +1,39 @@
+Command: C:\Users\Butch\Documents\02_Apps\strycast\build\windows-release\qwen35ba3b_target_test.exe []
+Started: 2026-10-29T19:39:41-04:00
+pos 0 max_abs=0.0710015 rmse=0.0119307
+pos 1 max_abs=0.0422173 rmse=0.00595196
+pos 2 max_abs=0.0240994 rmse=0.00471636
+pos 3 max_abs=0.049185 rmse=0.00764715
+pos 4 max_abs=0.0271933 rmse=0.00538799
+pos 5 max_abs=0.0290835 rmse=0.00562918
+pos 6 max_abs=0.0301142 rmse=0.00533518
+pos 7 max_abs=0.0265274 rmse=0.00466526
+pos 8 max_abs=0.351197 rmse=0.055198
+pos 9 max_abs=0.430313 rmse=0.0808055
+pos 10 max_abs=0.4629 rmse=0.0978718
+pos 11 max_abs=0.473875 rmse=0.0926053
+pos 0 max_abs=0.101083 rmse=0.012527
+pos 1 max_abs=0.0425619 rmse=0.00753814
+pos 2 max_abs=0.0293007 rmse=0.00586567
+pos 3 max_abs=0.0275269 rmse=0.00528642
+pos 4 max_abs=0.0308686 rmse=0.00634991
+pos 5 max_abs=0.0333078 rmse=0.00693502
+pos 6 max_abs=0.0452557 rmse=0.00773764
+pos 7 max_abs=0.0283747 rmse=0.00547734
+pos 8 max_abs=1.63841 rmse=0.300202
+pos 9 max_abs=1.52791 rmse=0.236102
+pos 10 max_abs=0.701792 rmse=0.137899
+pos 11 max_abs=0.636073 rmse=0.114919
+long chunk: tokens=1100 max_abs=1.2138 rmse=0.219402
+verification row 0: 0 logits differ, max_abs=0
+verification row 1: 0 logits differ, max_abs=0
+verification row 2: 0 logits differ, max_abs=0
+verification row 3: 0 logits differ, max_abs=0
+verification row 4: 0 logits differ, max_abs=0
+verification row 5: 0 logits differ, max_abs=0
+verification row 6: 0 logits differ, max_abs=0
+verification row 7: 0 logits differ, max_abs=0
+concurrent verification: sessions=3 rows=23 bit-identical
+qwen35ba3b_target_test: PASS
+
+Completed: 2026-10-29T19:40:14-04:00; error: <nil>

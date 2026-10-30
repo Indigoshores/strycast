@@ -1,0 +1,52 @@
+Command: C:\Users\Butch\Documents\02_Apps\strycast\build\windows-release\qwen35ba3b_verification_probe.exe ["C:\\Users\\Butch\\Documents\\10-Models\\models\\Qwen3.6-35B-A3B-UD-IQ4_XS.gguf" "serial"]
+Started: 2026-10-29T19:27:36-04:00
+snapshot-replay row=0 different=248320 max_abs=1.77725
+snapshot-replay row=0 layer=24 different=0 max_abs=0
+snapshot-replay row=0 layer=25 different=0 max_abs=0
+snapshot-replay row=0 layer=26 different=0 max_abs=0
+snapshot-replay row=0 layer=27 different=0 max_abs=0
+snapshot-replay row=0 layer=28 different=0 max_abs=0
+snapshot-replay row=0 layer=29 different=0 max_abs=0
+snapshot-replay row=0 layer=30 different=0 max_abs=0
+snapshot-replay row=0 layer=31 different=0 max_abs=0
+snapshot-replay row=0 layer=32 different=0 max_abs=0
+snapshot-replay row=0 layer=33 different=0 max_abs=0
+snapshot-replay row=0 layer=34 different=2048 max_abs=1.41193
+snapshot-replay row=0 layer=35 different=2048 max_abs=0.737977
+snapshot-replay row=0 layer=36 different=2048 max_abs=0.351128
+snapshot-replay row=0 layer=37 different=2048 max_abs=0.247234
+snapshot-replay row=0 layer=38 different=2048 max_abs=0.368716
+snapshot-replay row=0 layer=39 different=2048 max_abs=0.256861
+snapshot-replay row=1 different=248319 max_abs=0.970178
+snapshot-replay row=2 different=248319 max_abs=0.125823
+snapshot-replay row=3 different=248320 max_abs=0.170744
+snapshot-replay row=4 different=248319 max_abs=0.0803051
+snapshot-replay row=5 different=248318 max_abs=0.0961237
+snapshot-replay row=6 different=248317 max_abs=0.124829
+snapshot-replay row=7 different=248317 max_abs=0.0647626
+session=0 row=0 layer=24 different=0 max_abs=0
+session=0 row=0 layer=25 different=0 max_abs=0
+session=0 row=0 layer=26 different=0 max_abs=0
+session=0 row=0 layer=27 different=0 max_abs=0
+session=0 row=0 layer=28 different=0 max_abs=0
+session=0 row=0 layer=29 different=0 max_abs=0
+session=0 row=0 layer=30 different=0 max_abs=0
+session=0 row=0 layer=31 different=0 max_abs=0
+session=0 row=0 layer=32 different=0 max_abs=0
+session=0 row=0 layer=33 different=0 max_abs=0
+session=0 row=0 layer=34 different=2048 max_abs=1.41193
+session=0 row=0 layer=35 different=2048 max_abs=0.737977
+session=0 row=0 layer=36 different=2048 max_abs=0.351128
+session=0 row=0 layer=37 different=2048 max_abs=0.247234
+session=0 row=0 layer=38 different=2048 max_abs=0.368716
+session=0 row=0 layer=39 different=2048 max_abs=0.256861
+verification session=0 row=0 different=248320 max_abs=1.77725
+verification session=0 row=1 different=248319 max_abs=0.970178
+verification session=0 row=2 different=248319 max_abs=0.125823
+verification session=0 row=3 different=248320 max_abs=0.170744
+verification session=0 row=4 different=248319 max_abs=0.0803051
+verification session=0 row=5 different=248318 max_abs=0.0961237
+verification session=0 row=6 different=248317 max_abs=0.124829
+verification session=0 row=7 different=248317 max_abs=0.0647626
+
+Completed: 2026-10-29T19:27:42-04:00; error: exit status 1

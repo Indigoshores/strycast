@@ -1,0 +1,11 @@
+{
+  "acceptance": 0.7330097087378641,
+  "accepted": 604,
+  "all_outputs_match_original": true,
+  "draft_counts_match_original": true,
+  "drafted": 824,
+  "measured_rows": 4,
+  "old_source_unavailable": true,
+  "pooled_decode_tps": 72.88053355326173,
+  "standalone_mtp": "C:\\Users\\Butch\\Documents\\10-Models\\models\\Qwen3.6-35B-A3B-MTP-only-UD-Q4_K_XL.gguf"
+}

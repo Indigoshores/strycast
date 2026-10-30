@@ -1,0 +1,250 @@
+{
+  "source": "C:\\Users\\Butch\\Documents\\10-Models\\models\\Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf",
+  "source_bytes": 22853663008,
+  "source_file_id": "6dd42600:0027000000377120",
+  "subset": "C:\\Users\\Butch\\Documents\\10-Models\\models\\Qwen3.6-35B-A3B-MTP-only-UD-Q4_K_XL.gguf",
+  "subset_bytes": 1620490976,
+  "subset_sha256": "3fff99797b9c9d5afbd3ff368efac1d348080875d87c38148bd0122724a7f6d9",
+  "metadata_sha256": "f3606e7fc8d35feeb12a7cecc6ffd9255be847cb438b67385553c21099ce1346",
+  "tensors": [
+    {
+      "name": "output.weight",
+      "dims": [
+        2048,
+        248320
+      ],
+      "ggml_type": 8,
+      "offset": 0,
+      "bytes": 540344320,
+      "payload_sha256": "d39064714a29049c8afbb96307188dc45828bc6b1140f6b2efe7873ab31ef19d"
+    },
+    {
+      "name": "token_embd.weight",
+      "dims": [
+        2048,
+        248320
+      ],
+      "ggml_type": 8,
+      "offset": 540344320,
+      "bytes": 540344320,
+      "payload_sha256": "a1c8a86668c05ad6392b1e55bb7b076e27a0e20eb1e553ab46df4c18f2d0191f"
+    },
+    {
+      "name": "blk.40.attn_k.weight",
+      "dims": [
+        2048,
+        512
+      ],
+      "ggml_type": 8,
+      "offset": 1080688640,
+      "bytes": 1114112,
+      "payload_sha256": "c8e44b473dbd981c6b6728ec836d336b05e145a19eb66284d2bff31aa11efb74"
+    },
+    {
+      "name": "blk.40.attn_k_norm.weight",
+      "dims": [
+        256
+      ],
+      "ggml_type": 0,
+      "offset": 1081802752,
+      "bytes": 1024,
+      "payload_sha256": "ff4dcaa69c46276d3d4de2438de42aefc2ac4636332376d22c7f9c94064bc597"
+    },
+    {
+      "name": "blk.40.attn_norm.weight",
+      "dims": [
+        2048
+      ],
+      "ggml_type": 0,
+      "offset": 1081803776,
+      "bytes": 8192,
+      "payload_sha256": "d19fb0a43d49e4a2690091b383e16e3b005dc11e308cc8ca5f9fdb4f17909a6a"
+    },
+    {
+      "name": "blk.40.attn_output.weight",
+      "dims": [
+        4096,
+        2048
+      ],
+      "ggml_type": 8,
+      "offset": 1081811968,
+      "bytes": 8912896,
+      "payload_sha256": "e5ab757ccfe381ccbdcdc2c4bc48054b07358830aa07ae9e2d415b7b931c8aa4"
+    },
+    {
+      "name": "blk.40.attn_q.weight",
+      "dims": [
+        2048,
+        8192
+      ],
+      "ggml_type": 8,
+      "offset": 1090724864,
+      "bytes": 17825792,
+      "payload_sha256": "b903a081e45b6610cb81366728887673e725914b17266e65ba514f5fd3617bf3"
+    },
+    {
+      "name": "blk.40.attn_q_norm.weight",
+      "dims": [
+        256
+      ],
+      "ggml_type": 0,
+      "offset": 1108550656,
+      "bytes": 1024,
+      "payload_sha256": "b4e21f652c5ab87f50be67a49ee984f3d67f7742c1ada7660822cb31f57db13b"
+    },
+    {
+      "name": "blk.40.attn_v.weight",
+      "dims": [
+        2048,
+        512
+      ],
+      "ggml_type": 8,
+      "offset": 1108551680,
+      "bytes": 1114112,
+      "payload_sha256": "b0637b63acce38a64542f921c76b0c93cb9c9ebd35b47453d4484b004c458ca8"
+    },
+    {
+      "name": "blk.40.ffn_down_exps.weight",
+      "dims": [
+        512,
+        2048,
+        256
+      ],
+      "ggml_type": 13,
+      "offset": 1109665792,
+      "bytes": 184549376,
+      "payload_sha256": "e5a1c5d455d9aee346c48ad0a594612c966f8f31ae45d5144a6b3580d5dfb2d6"
+    },
+    {
+      "name": "blk.40.ffn_down_shexp.weight",
+      "dims": [
+        512,
+        2048
+      ],
+      "ggml_type": 8,
+      "offset": 1294215168,
+      "bytes": 1114112,
+      "payload_sha256": "a43181eb0de549c5d814320a326ec6bdcaea325288c446195d2345b8da93cdc7"
+    },
+    {
+      "name": "blk.40.ffn_gate_exps.weight",
+      "dims": [
+        2048,
+        512,
+        256
+      ],
+      "ggml_type": 12,
+      "offset": 1295329280,
+      "bytes": 150994944,
+      "payload_sha256": "ee9ed86c023cdecc0973d77ffe363968d0635c689b032b8964ab6ea1220b0647"
+    },
+    {
+      "name": "blk.40.ffn_gate_inp.weight",
+      "dims": [
+        2048,
+        256
+      ],
+      "ggml_type": 30,
+      "offset": 1446324224,
+      "bytes": 1048576,
+      "payload_sha256": "ed592b6a2138228dc40dacc96179ce0c657ebd5c55c92476938c4eb0ede9108c"
+    },
+    {
+      "name": "blk.40.ffn_gate_inp_shexp.weight",
+      "dims": [
+        2048
+      ],
+      "ggml_type": 30,
+      "offset": 1447372800,
+      "bytes": 4096,
+      "payload_sha256": "6cf70655851eae34334fc252072d3d872d908b6ea2479ac45676e667ded61c2e"
+    },
+    {
+      "name": "blk.40.ffn_gate_shexp.weight",
+      "dims": [
+        2048,
+        512
+      ],
+      "ggml_type": 8,
+      "offset": 1447376896,
+      "bytes": 1114112,
+      "payload_sha256": "4113eba57e32a9f38d3227dd412def0211e870886a77416c2a39da2649377eff"
+    },
+    {
+      "name": "blk.40.ffn_up_exps.weight",
+      "dims": [
+        2048,
+        512,
+        256
+      ],
+      "ggml_type": 12,
+      "offset": 1448491008,
+      "bytes": 150994944,
+      "payload_sha256": "a1bb910c3cba9ff820c742042435d584a0c6256debc7d68a3d20172403fe1059"
+    },
+    {
+      "name": "blk.40.ffn_up_shexp.weight",
+      "dims": [
+        2048,
+        512
+      ],
+      "ggml_type": 8,
+      "offset": 1599485952,
+      "bytes": 1114112,
+      "payload_sha256": "9e0fb64f7b94a748e81057209036b9929b7cbc9b7ddad57a7c2c2856967be038"
+    },
+    {
+      "name": "blk.40.nextn.eh_proj.weight",
+      "dims": [
+        4096,
+        2048
+      ],
+      "ggml_type": 8,
+      "offset": 1600600064,
+      "bytes": 8912896,
+      "payload_sha256": "03487220d40e35dcf441ba4ea7ee94ce6cfc13e1983b020cdf6ca29decd10854"
+    },
+    {
+      "name": "blk.40.nextn.enorm.weight",
+      "dims": [
+        2048
+      ],
+      "ggml_type": 0,
+      "offset": 1609512960,
+      "bytes": 8192,
+      "payload_sha256": "0a4310389073ed444876ec823dd27ca3029dc30aeb84487a13b6de4b90ed7717"
+    },
+    {
+      "name": "blk.40.nextn.hnorm.weight",
+      "dims": [
+        2048
+      ],
+      "ggml_type": 0,
+      "offset": 1609521152,
+      "bytes": 8192,
+      "payload_sha256": "6dda2c53989ed9a86757bdccf4427ac84f38c85a1850f5fe04ba5fbdfcb20a1b"
+    },
+    {
+      "name": "blk.40.nextn.shared_head_norm.weight",
+      "dims": [
+        2048
+      ],
+      "ggml_type": 0,
+      "offset": 1609529344,
+      "bytes": 8192,
+      "payload_sha256": "5fb1b8b3a994fa6a2adb1fd56d660d2ce2cf317e842a311db19e01ded3d27e1b"
+    },
+    {
+      "name": "blk.40.post_attention_norm.weight",
+      "dims": [
+        2048
+      ],
+      "ggml_type": 0,
+      "offset": 1609537536,
+      "bytes": 8192,
+      "payload_sha256": "c0eb303e03d76e7f7636fc7f178f9d5d4d61297d086e90e26d5eadb89700622c"
+    }
+  ],
+  "verified": true,
+  "time": "2026-10-29T20:34:04-04:00"
+}

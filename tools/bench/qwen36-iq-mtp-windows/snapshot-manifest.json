@@ -1,0 +1,316 @@
+{
+  "copied_bytes": 886211,
+  "files": [
+    {
+      "bytes": 14858,
+      "path": "isolate-mtp.go",
+      "sha256": "b777c03a6b26f630484984b67f91e4d31762f8fee806ff08b78e57477575e615"
+    },
+    {
+      "bytes": 3357,
+      "path": "start-qwen36-iq-mtp2.go",
+      "sha256": "f09ce006f932d7f63743ef43a8b3a3ce7b6c0341c6daaca9e5ad3ce4e5fe03bc"
+    },
+    {
+      "bytes": 27450,
+      "path": "main.go",
+      "sha256": "e886f8782893350c58a17a688d39948384d65863c61154b5d2997751945fbb15"
+    },
+    {
+      "bytes": 17509,
+      "path": "spec-tools.go",
+      "sha256": "0d7e92f99b79ea636a8d4fd2d1cabefa685baa57844a190928dac701a587e02a"
+    },
+    {
+      "bytes": 18637,
+      "path": "spec-validation.go",
+      "sha256": "3f5403beda951bded7539d9ae4e60634981744bb18e1165be766461e03d0ad1e"
+    },
+    {
+      "bytes": 636,
+      "path": "artifact-digests.go",
+      "sha256": "92ae83456093679823182c884f155cbc6612c725d5b03e3f794cf9fdd7d788cf"
+    },
+    {
+      "bytes": 6011,
+      "path": "results/QWEN36_ISOLATED_MTP_2026-10-29.md",
+      "sha256": "0fb062440af065121d71f6d9070b885ecdad72c34f008fac04a2c39c21ee8b32"
+    },
+    {
+      "bytes": 38229,
+      "bytes_source": 38230,
+      "normalization": "Removed extra blank line at EOF for git whitespace check.",
+      "path": "results/QWEN36_IQ4_XS_MTP2_SERVER_SETTINGS_2026-10-29.md",
+      "sha256": "8c2306382804ffb56008121ddff8776d53f61e9517b168b8229c03a91cf443e9",
+      "sha256_source": "c70bfec2d2aa783fb89456ed8024a6074068e3103209ff1e99cf45d1ab65205f"
+    },
+    {
+      "bytes": 11622,
+      "path": "results/QWEN36_IQ4_XS_SPECULATIVE_RESULTS_2026-10-29.md",
+      "sha256": "2a1832d0160632551a9f9096b523f6cea298ef06b8790712f1724d91919bf576"
+    },
+    {
+      "bytes": 6477,
+      "path": "results/isolated-mtp-extraction.json",
+      "sha256": "9520313df44ce78f22550e2bdeae46eadfacd4382d5e4d011ec0d8494e5f98ac"
+    },
+    {
+      "bytes": 363,
+      "path": "results/isolated-mtp-runtime-summary.json",
+      "sha256": "d33394c92b544a9e2a4d96e73ba687048c1cabfd821cffb45bdc286fd79b41f2"
+    },
+    {
+      "bytes": 16790,
+      "path": "results/isolated-mtp-runtime-rows.json",
+      "sha256": "7607ca62bcc64f1c6fb12bbe97c6c8bc5d68d0b7c0d3d70e3da752b638b93177"
+    },
+    {
+      "bytes": 284,
+      "path": "results/isolated-mtp-json-summary.json",
+      "sha256": "1eeb7bd74161f01621cd22317c62b1bafe6840e19a25e346665c3e3964e49dba"
+    },
+    {
+      "bytes": 30833,
+      "path": "results/isolated-mtp-json-rows.json",
+      "sha256": "0f134aab01fce1b1ec9900e5e84526cc304b5b31552750685fea2d30f0513939"
+    },
+    {
+      "bytes": 677,
+      "path": "results/isolated-mtp-deletion.json",
+      "sha256": "065d2d1dbce5291c0ca8ab63680e8c9360020145e0cfb7e6d6bf3155816893a3"
+    },
+    {
+      "bytes": 1788,
+      "path": "results/isolated-mtp-final-probe.json",
+      "sha256": "5ee6012597e7e3b11d2fb905b215fb3191218d464febe1be05c658bedf8da9e5"
+    },
+    {
+      "bytes": 3059,
+      "path": "results/isolated-mtp-artifacts.json",
+      "sha256": "11661bfd461a9afadea47a81482947b5c37e3232e3afaea381d103c90124e93e"
+    },
+    {
+      "bytes": 1233,
+      "path": "results/iq-spec-mtp2-launch-profile.json",
+      "sha256": "461bfba563a11791bab58e76ce7e2ff7f182446d6dbd85767b8c23866ddcdb37"
+    },
+    {
+      "bytes": 1078,
+      "path": "results/iq-prefill-control-native-final.log",
+      "sha256": "b52269e81ae95234fdb4e22612d4ad8e7c89bfa78c04e0cb9f8e1a3276d68fa5"
+    },
+    {
+      "bytes": 1078,
+      "path": "results/iq-parity-fixed-native-isolated.log",
+      "sha256": "fa4ee6d223609770fba759fb6c0456ebee8ba935ab9bb822558c85b5e52ad528"
+    },
+    {
+      "bytes": 9073,
+      "path": "results/iq-parity-fixed-http-string-bench.json",
+      "sha256": "fad1fa94ea338a89cc4fb711e868014d820847ef695d75c4a1efe15da5f9995e"
+    },
+    {
+      "bytes": 1314,
+      "path": "results/iq-spec-natural-screen-summary.json",
+      "sha256": "53f08d330990949514d01fcfdcd97dbf3d22e7990966c8c4e559e7eb5d4cb311"
+    },
+    {
+      "bytes": 67308,
+      "path": "results/iq-spec-natural-screen-rows.json",
+      "sha256": "a9aabd88cdacbeb5ad013d971160fccf69d625511f938bedfbbd3549bb24cabd"
+    },
+    {
+      "bytes": 1534,
+      "path": "results/iq-spec-natural-audit.json",
+      "sha256": "70947b0da0da580b8d314a3722d1453c0497680a1fdac46297dfb9361d2b8b0b"
+    },
+    {
+      "bytes": 74009,
+      "path": "results/iq-spec-validation-v2-rows.json",
+      "sha256": "78046dbfb993f72e053eb19758ea4d88332c9a479e34bde5bdcbede4cf1f1a52"
+    },
+    {
+      "bytes": 299725,
+      "path": "results/iq-spec-validation-v2-fixtures.json",
+      "sha256": "9d59f5d3340913452d989fe23710693f9cc8a6c3ec27e67feecf6b4938966b7a"
+    },
+    {
+      "bytes": 11388,
+      "path": "results/QWEN36_IQ_PREFILL_VERIFICATION_FIX_2026-10-29.md",
+      "sha256": "dc0ba757f7c5274505eeab1439c2dafbf0fdaaf886a506e5b537025e244e9238"
+    },
+    {
+      "bytes": 9793,
+      "path": "results/QWEN36_IQ_PREFILL_IMPLEMENTATION_2026-10-29.md",
+      "sha256": "2d7a7a3ee6e89732e7c7d570de057bf9c369d687d3efdd860d5d92023648a906"
+    },
+    {
+      "bytes": 370,
+      "path": "results/iq-spec-validation-v2-summary.json",
+      "sha256": "11392297b15aee5c6d151980d8384089cd968a69f7148a92379de02ba291c0db"
+    },
+    {
+      "bytes": 284,
+      "path": "results/iq-spec-json-schema-summary.json",
+      "sha256": "1eeb7bd74161f01621cd22317c62b1bafe6840e19a25e346665c3e3964e49dba"
+    },
+    {
+      "bytes": 2339,
+      "path": "results/iq-spec-artifact-digests.json",
+      "sha256": "759cd7112fe37d53218b8d120a6752dc9340e31984e5ddee7125932da9a095bd"
+    },
+    {
+      "bytes": 2435,
+      "path": "results/iq-parity-fix-artifact-digests.json",
+      "sha256": "06bed926db09da4b6ac6a1aba009d285db29129071d309ad3e761ad68ff15f05"
+    },
+    {
+      "bytes": 1787,
+      "path": "results/iq-spec-final-probe.json",
+      "sha256": "e40b7db0740be49b39e7cec172898b3213246003099eaa297d7cb72528543a4d"
+    },
+    {
+      "bytes": 376,
+      "path": "results/iq-dflash2-download-receipt.json",
+      "sha256": "c0e205184cb00197d445ff7c3c70bbe9fb89438131833214a0a9b17636447bed"
+    },
+    {
+      "bytes": 30851,
+      "path": "results/iq-spec-json-schema-rows.json",
+      "sha256": "03ea0dbd8d6ce157fc3d3f13178d9fd3cb1c1fde9e861b8d1f7d29cd11b029be"
+    },
+    {
+      "bytes": 2024,
+      "path": "results/iq-parity-serial-probe.log",
+      "sha256": "7c828bf6a2326fdc391e15dbd784cfcb8bc63716a9d093973842435c44d2cccc"
+    },
+    {
+      "bytes": 3016,
+      "path": "results/iq-parity-serial-late-probe.log",
+      "sha256": "f86705d91f557527bd00cff8908b1119c96820876ec6f5bcbf406d3cbe753210"
+    },
+    {
+      "bytes": 4910,
+      "path": "results/iq-parity-serial-operator-trace.log",
+      "sha256": "913a3871caa40781a176f2ad3e8fe4e79f3a95f6aec960d5b55bf91d79e43283"
+    },
+    {
+      "bytes": 6428,
+      "path": "results/iq-parity-mmq-stage-trace.log",
+      "sha256": "431505f5a0386aebc456db60e5ad8bc5c59623e0911575bb0d92bf366ac44d68"
+    },
+    {
+      "bytes": 2910,
+      "path": "results/iq-parity-serial-sync-control.log",
+      "sha256": "2fe5b649d7061923ba4597a48c8fec44cb982f47f7626c7e70d55fc95299ee99"
+    },
+    {
+      "bytes": 3790,
+      "path": "results/iq-parity-concurrent-sync-control.log",
+      "sha256": "27c41d0eae8a03072402e3436d5bbd16a7e6aab8c8d88ade0e4c3c5d8996d2ea"
+    },
+    {
+      "bytes": 1675,
+      "path": "results/iq-parity-fixed-full-target.log",
+      "sha256": "65d773efa589a87207dcbf016ce3e29f11612d282ea4c663d3ede838a29e4e0a"
+    },
+    {
+      "bytes": 2694,
+      "path": "results/iq-parity-fixed-serial-probe.log",
+      "sha256": "227d55578736f9ea31002381142993b37dca82a11759846e77d56140ea23124b"
+    },
+    {
+      "bytes": 3790,
+      "path": "results/iq-parity-fixed-concurrent-probe.log",
+      "sha256": "ca0cb91a7512c9af73acfad47d5d58b2a2decd3fbe03794953cf77070ba50385"
+    },
+    {
+      "bytes": 21077,
+      "path": "results/iq-parity-fixed-moe-ops.log",
+      "sha256": "02f93304416e90bff2d5df3ef95b69d8e41bf9c4d3cb83004f430a64271943dc"
+    },
+    {
+      "bytes": 3791,
+      "path": "results/iq-parity-fixed-q4-concurrent-probe.log",
+      "sha256": "9a965ccd0ea614e47e3dfa521209cc5a5ab5b5845dd009da3654fa4b763a7421"
+    },
+    {
+      "bytes": 1678,
+      "path": "results/iq-parity-fixed-control-full-target.log",
+      "sha256": "fd8b82211bf0665c09bc65297f99af8d10b93b9ff3f2aad5d4924d6ee9b6e4f1"
+    },
+    {
+      "bytes": 18017,
+      "path": "results/iq-prefill-verification-fix.patch",
+      "sha256": "f1f9000d0471991157124b91158d7f3fb7627c10a66d1858f0e91fffa5d31fa5"
+    },
+    {
+      "bytes": 1787,
+      "path": "results/iq-parity-fix-final-probe.json",
+      "sha256": "141f17fff58f5309fee0d91c37206676ec7aa8ede22b40833bc75ad1caa57d63"
+    },
+    {
+      "bytes": 27660,
+      "path": "results/iq-prefill-implementation.patch",
+      "sha256": "773a8ca00a511eefa4a3446c5d781d855cebb21ee38c2be4f301289f87d3a09f"
+    },
+    {
+      "bytes": 2165,
+      "path": "results/iq-prefill-artifact-digests.json",
+      "sha256": "948d3857c672b6cc4ca4f52ef6a298c24d77722d1529cceabaa81809c32babe5"
+    },
+    {
+      "bytes": 1099,
+      "path": "results/iq-prefill-candidate-native-final.log",
+      "sha256": "fabc29afd0c8e8bfecc14fca8e9a4cc55e79482d5c25e3897fcabe9e700e9d7f"
+    },
+    {
+      "bytes": 895,
+      "path": "results/iq-prefill-http-comparison.json",
+      "sha256": "115eccb6f9e071e883467cf065a3f450d8ed28013a50e07b6d214ecaa8ab88a7"
+    },
+    {
+      "bytes": 9076,
+      "path": "results/iq-prefill-control-http-string-bench.json",
+      "sha256": "5002bb9de71d7dcb3908a5a6c9c3b3bb402938dba69e6b2fca609de03cf36baa"
+    },
+    {
+      "bytes": 9090,
+      "path": "results/iq-prefill-candidate-http-string-bench.json",
+      "sha256": "fc0b0af00d2de7d13b72f73ccf1b18a829d388c3c404a749b86b4849805ddf95"
+    },
+    {
+      "bytes": 537,
+      "path": "results/iq-prefill-cpu-dispatch.log",
+      "sha256": "4faf1a28b5c4250053d4f315543622e228218411832cfbf5e9081ac3fce730ae"
+    },
+    {
+      "bytes": 21077,
+      "path": "results/iq-prefill-moe-ops-final.log",
+      "sha256": "16e3ede78182b0302d61a5faa7638388a25256768945958994024979cb7cf349"
+    },
+    {
+      "bytes": 1763,
+      "path": "results/iq-prefill-model-target-final.log",
+      "sha256": "7f042dc4837ed9edaf29062da648ad6418ed45d6c3d0c1c94c32dd4cfa28b2ff"
+    },
+    {
+      "bytes": 1682,
+      "path": "results/iq-prefill-model-target-control-final.log",
+      "sha256": "e4669dd639ba935eb780816b7cb0c0098c297e4af15bf38ff5eda9db978c712b"
+    },
+    {
+      "bytes": 17237,
+      "path": "results/iq-prefill-control-target-debug.log",
+      "sha256": "6a6e6abdd8ea94e7e8f94a9414cb172e21cbc883787860eac5e173a0a0cc0611"
+    },
+    {
+      "bytes": 1787,
+      "path": "results/iq-prefill-implementation-final-probe.json",
+      "sha256": "03640f6f7bc49d0280b118f43e1a6c7c199732a098631d2419705a0a8dc47005"
+    }
+  ],
+  "notes": "Copied local snapshots with no models, executables, SDK, graph cache or unrelated work. The server-settings Markdown has only its extra blank EOF removed; its original digest is retained. Absolute paths and binary digests are historical provenance, not portable defaults.",
+  "source_directory": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools",
+  "unresolved_historical_links": null
+}

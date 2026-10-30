@@ -1,0 +1,12 @@
+{
+  "bytes_deleted": 22853663008,
+  "explicitly_authorized_original": "C:\\Users\\Butch\\Documents\\10-Models\\models\\Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf",
+  "net_bytes_reclaimed": 21233172032,
+  "recursive": false,
+  "removed_holding_path": "C:\\Users\\Butch\\Documents\\10-Models\\models\\Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf.pending-delete-isolated-mtp",
+  "source_file_id": "6dd42600:0027000000377120",
+  "standalone_bytes": 1620490976,
+  "standalone_path": "C:\\Users\\Butch\\Documents\\10-Models\\models\\Qwen3.6-35B-A3B-MTP-only-UD-Q4_K_XL.gguf",
+  "standalone_sha256": "3fff99797b9c9d5afbd3ff368efac1d348080875d87c38148bd0122724a7f6d9",
+  "time": "2026-10-29T20:38:47-04:00"
+}

@@ -1,0 +1,24 @@
+{
+  "all_generated_128": true,
+  "arms": {
+    "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\results\\iq-prefill-candidate-http-string-bench.json": {
+      "generated_tokens": 128,
+      "mean_decode_tps": 56.868925197051226,
+      "mean_prefill_tps": 3105.2246257732077,
+      "mean_wall_ms": 2900.8860000000004,
+      "measured_repetitions": 2,
+      "prompt_tokens": 1950
+    },
+    "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\results\\iq-prefill-control-http-string-bench.json": {
+      "generated_tokens": 128,
+      "mean_decode_tps": 56.53547364577746,
+      "mean_prefill_tps": 258.65991410221784,
+      "mean_wall_ms": 9837.020499999999,
+      "measured_repetitions": 2,
+      "prompt_tokens": 1950
+    }
+  },
+  "cache_check": "zero where reported; requests use cache_prompt=false",
+  "equal_input_token_counts": true,
+  "identical_prompt_hashes": true
+}

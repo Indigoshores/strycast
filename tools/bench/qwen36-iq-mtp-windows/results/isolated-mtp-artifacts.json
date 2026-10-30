@@ -1,0 +1,92 @@
+[
+  {
+    "bytes": 1620490976,
+    "modified": "2026-10-29T20:34:00-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\10-Models\\models\\Qwen3.6-35B-A3B-MTP-only-UD-Q4_K_XL.gguf",
+    "sha256": "3fff99797b9c9d5afbd3ff368efac1d348080875d87c38148bd0122724a7f6d9"
+  },
+  {
+    "bytes": 4316672,
+    "modified": "2026-10-29T20:36:10-04:00",
+    "path": "start-qwen36-iq-mtp2.exe",
+    "sha256": "b51a8c6775132bbbdb85a7528591789b0b63d2e602b19fc1167f086da17e83f9"
+  },
+  {
+    "bytes": 3357,
+    "modified": "2026-10-29T20:36:09-04:00",
+    "path": "start-qwen36-iq-mtp2.go",
+    "sha256": "f09ce006f932d7f63743ef43a8b3a3ce7b6c0341c6daaca9e5ad3ce4e5fe03bc"
+  },
+  {
+    "bytes": 3678208,
+    "modified": "2026-10-29T20:41:59-04:00",
+    "path": "isolate-mtp.exe",
+    "sha256": "ab67fe62a2ef4cf2cf8833907dde30af34e28635fc934cfa2c7292a8db82c28b"
+  },
+  {
+    "bytes": 14858,
+    "modified": "2026-10-29T20:41:58-04:00",
+    "path": "isolate-mtp.go",
+    "sha256": "b777c03a6b26f630484984b67f91e4d31762f8fee806ff08b78e57477575e615"
+  },
+  {
+    "bytes": 9934336,
+    "modified": "2026-10-29T20:35:39-04:00",
+    "path": "spec-tools.exe",
+    "sha256": "c115d908b4c16b61d3151d6980d4ea546997e131c3c3df4744b0019bc7bb95d9"
+  },
+  {
+    "bytes": 17509,
+    "modified": "2026-10-29T20:35:38-04:00",
+    "path": "spec-tools.go",
+    "sha256": "0d7e92f99b79ea636a8d4fd2d1cabefa685baa57844a190928dac701a587e02a"
+  },
+  {
+    "bytes": 27450,
+    "modified": "2026-10-29T20:35:38-04:00",
+    "path": "main.go",
+    "sha256": "e886f8782893350c58a17a688d39948384d65863c61154b5d2997751945fbb15"
+  },
+  {
+    "bytes": 1233,
+    "modified": "2026-10-29T20:37:01-04:00",
+    "path": "results\\iq-spec-mtp2-launch-profile.json",
+    "sha256": "461bfba563a11791bab58e76ce7e2ff7f182446d6dbd85767b8c23866ddcdb37"
+  },
+  {
+    "bytes": 6477,
+    "modified": "2026-10-29T20:34:04-04:00",
+    "path": "results\\isolated-mtp-extraction.json",
+    "sha256": "9520313df44ce78f22550e2bdeae46eadfacd4382d5e4d011ec0d8494e5f98ac"
+  },
+  {
+    "bytes": 363,
+    "modified": "2026-10-29T20:36:34-04:00",
+    "path": "results\\isolated-mtp-runtime-summary.json",
+    "sha256": "d33394c92b544a9e2a4d96e73ba687048c1cabfd821cffb45bdc286fd79b41f2"
+  },
+  {
+    "bytes": 284,
+    "modified": "2026-10-29T20:37:33-04:00",
+    "path": "results\\isolated-mtp-json-summary.json",
+    "sha256": "1eeb7bd74161f01621cd22317c62b1bafe6840e19a25e346665c3e3964e49dba"
+  },
+  {
+    "bytes": 677,
+    "modified": "2026-10-29T20:38:47-04:00",
+    "path": "results\\isolated-mtp-deletion.json",
+    "sha256": "065d2d1dbce5291c0ca8ab63680e8c9360020145e0cfb7e6d6bf3155816893a3"
+  },
+  {
+    "bytes": 6011,
+    "modified": "2026-10-29T20:41:53-04:00",
+    "path": "results\\QWEN36_ISOLATED_MTP_2026-10-29.md",
+    "sha256": "0fb062440af065121d71f6d9070b885ecdad72c34f008fac04a2c39c21ee8b32"
+  },
+  {
+    "bytes": 38230,
+    "modified": "2026-10-29T20:41:53-04:00",
+    "path": "results\\QWEN36_IQ4_XS_MTP2_SERVER_SETTINGS_2026-10-29.md",
+    "sha256": "c70bfec2d2aa783fb89456ed8024a6074068e3103209ff1e99cf45d1ab65205f"
+  }
+]

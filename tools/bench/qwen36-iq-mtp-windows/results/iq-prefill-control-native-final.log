@@ -1,0 +1,13 @@
+Command: C:\Users\Butch\Documents\02_Apps\strycast\build\windows-release\gufo.exe ["bench" "--model" "C:\\Users\\Butch\\Documents\\10-Models\\models\\Qwen3.6-35B-A3B-UD-IQ4_XS.gguf" "--speculative" "off" "-p" "512,2048" "-n" "128" "-r" "2"]
+Started: 2026-10-29T19:07:17-04:00
+HIP: found 1 ROCm devices (Total VRAM: 110456 MiB):
+  Device 0: AMD Radeon(TM) 8060S Graphics, gfx1151, Wave Size: 32, VRAM: 110456 MiB
+[Model Load]: 5.19481 s
+| model                          |       size |     params | backend    |            test |                   t/s |
+| ------------------------------ | ---------- | ---------- | ---------- | --------------- | --------------------- |
+| Qwen3.6-35B-A3B IQ3_S mixed    |  16.51 GiB |    34.66 B | ROCm (HIP) |           pp512 |        290.38 ± 2.85 |
+| Qwen3.6-35B-A3B IQ3_S mixed    |  16.51 GiB |    34.66 B | ROCm (HIP) |          pp2048 |        266.05 ± 0.37 |
+| Qwen3.6-35B-A3B IQ3_S mixed    |  16.51 GiB |    34.66 B | ROCm (HIP) |           tg128 |         56.69 ± 0.17 |
+
+
+Completed: 2026-10-29T19:07:56-04:00; error: <nil>

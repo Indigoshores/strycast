@@ -1,0 +1,24 @@
+{
+  "8080": {
+    "/health": "Get \"http://127.0.0.1:8080/health\": dial tcp 127.0.0.1:8080: connectex: No connection could be made because the target machine actively refused it.",
+    "/props": "Get \"http://127.0.0.1:8080/props\": dial tcp 127.0.0.1:8080: connectex: No connection could be made because the target machine actively refused it.",
+    "/v1/models": "Get \"http://127.0.0.1:8080/v1/models\": dial tcp 127.0.0.1:8080: connectex: No connection could be made because the target machine actively refused it."
+  },
+  "8081": {
+    "/health": "Get \"http://127.0.0.1:8081/health\": dial tcp 127.0.0.1:8081: connectex: No connection could be made because the target machine actively refused it.",
+    "/props": "Get \"http://127.0.0.1:8081/props\": dial tcp 127.0.0.1:8081: connectex: No connection could be made because the target machine actively refused it.",
+    "/v1/models": "Get \"http://127.0.0.1:8081/v1/models\": dial tcp 127.0.0.1:8081: connectex: No connection could be made because the target machine actively refused it."
+  },
+  "8082": {
+    "/health": "Get \"http://127.0.0.1:8082/health\": dial tcp 127.0.0.1:8082: connectex: No connection could be made because the target machine actively refused it.",
+    "/props": "Get \"http://127.0.0.1:8082/props\": dial tcp 127.0.0.1:8082: connectex: No connection could be made because the target machine actively refused it.",
+    "/v1/models": "Get \"http://127.0.0.1:8082/v1/models\": dial tcp 127.0.0.1:8082: connectex: No connection could be made because the target machine actively refused it."
+  },
+  "memory": {
+    "available_gib": 21.992244720458984,
+    "commit_available_gib": 62.08479309082031,
+    "installed_gib": 128,
+    "os_visible_gib": 31.647281646728516
+  },
+  "time": "2026-10-29T20:15:46-04:00"
+}

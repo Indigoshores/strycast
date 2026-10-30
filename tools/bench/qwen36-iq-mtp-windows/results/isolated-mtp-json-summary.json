@@ -1,0 +1,6 @@
+{
+  "matches_ar": true,
+  "notes": "Explicit response_format json_schema; original unconstrained-format failures retained; constraints specify types/keys only, not answer values; tool call itself remains auto/unconstrained",
+  "pure_json_and_known_answers_pass": true,
+  "rows": 10
+}

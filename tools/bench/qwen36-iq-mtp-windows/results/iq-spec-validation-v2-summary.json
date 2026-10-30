@@ -1,0 +1,7 @@
+{
+  "all_known_answer_checks_pass": false,
+  "all_spec_outputs_match_ar": true,
+  "protocol": "same IQ4_XS and prefill ON; plain decode vs selected speculation; short through ~32K context, pure JSON, full multi-turn transcript, auto tool call and local mock result, no-tool control, 2 concurrent requests; no Strata launch",
+  "rows": 24,
+  "speculative_mode": "mtp2"
+}

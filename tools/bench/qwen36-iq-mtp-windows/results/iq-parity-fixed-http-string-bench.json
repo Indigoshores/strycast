@@ -1,0 +1,299 @@
+[
+  {
+    "decode_tps": 58.00179905267649,
+    "generated_tokens": 128,
+    "kind": "warmup",
+    "label": "iq-parity-fixed-http",
+    "prefill_tps": 2344.976039155087,
+    "prompt_sha256": "b55263190c354e77c360f4871967972c17ae74b33247b4af6b4cc9da6a25b768",
+    "prompt_tokens": 1950,
+    "repetition": 0,
+    "timings": {
+      "cache_disk_enqueue_ms": 0.0033,
+      "cache_n": 0,
+      "cache_restore_ms": 0,
+      "cache_snapshot_ms": 10.5836,
+      "component_cache": {
+        "borrowed_capacity_bytes": 36700160,
+        "captured_capacity_bytes": 109641728,
+        "captured_checkpoint_ids": [
+          2
+        ],
+        "captures": 1,
+        "copied_payload_bytes": 72069280,
+        "deepest_disk_tokens": 0,
+        "deepest_live_tokens": 0,
+        "deepest_ram_tokens": 0,
+        "global_categories": {
+          "backing_assigned": {
+            "bytes": 36700160,
+            "peak_bytes": 36700160,
+            "reserved_bytes": 36700160
+          },
+          "backing_free": {
+            "bytes": 2168717312,
+            "peak_bytes": 2278359040,
+            "reserved_bytes": 0
+          },
+          "backing_materialized": {
+            "bytes": 0,
+            "peak_bytes": 0,
+            "reserved_bytes": 0
+          },
+          "metadata": {
+            "bytes": 155149284,
+            "peak_bytes": 155177600,
+            "reserved_bytes": 0
+          },
+          "private_state": {
+            "bytes": 69009408,
+            "peak_bytes": 69009408,
+            "reserved_bytes": 0
+          },
+          "private_tail": {
+            "bytes": 3932160,
+            "peak_bytes": 3932160,
+            "reserved_bytes": 0
+          },
+          "transfer_staging": {
+            "bytes": 0,
+            "peak_bytes": 0,
+            "reserved_bytes": 0
+          }
+        },
+        "global_ledger_bytes": 2433508324,
+        "global_peak_ledger_bytes": 2433536640,
+        "global_peak_persistence_pinned_bytes": 0,
+        "global_peak_ram_bytes": 2433536640,
+        "global_persistence_pinned_bytes": 0,
+        "global_ram_bytes": 2433508324,
+        "global_spill": {
+          "foreground_bytes": 0,
+          "foreground_copy_ms": 0,
+          "idle_bytes": 0,
+          "idle_copy_ms": 0,
+          "idle_failures": 0,
+          "reassignments": 1,
+          "residual_wait_ms": 0.0355,
+          "stream_wait_ms": 0
+        },
+        "prefilled_tokens": 1950,
+        "restored_bytes": 0,
+        "reuse": "none",
+        "schema": "component-cache-v1",
+        "selected_tokens": 0,
+        "selection_reason": 4
+      },
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "draft_rounds": 0,
+      "predicted_ms": 2206.8281000000025,
+      "predicted_n": 128,
+      "predicted_per_second": 58.00179905267649,
+      "predicted_per_token_ms": 17.24084453125002,
+      "prompt_ms": 831.565,
+      "prompt_n": 1950,
+      "prompt_per_second": 2344.976039155087,
+      "prompt_per_token_ms": 0.42644358974358976
+    },
+    "wall_ms": 3055.116
+  },
+  {
+    "decode_tps": 58.43116521147194,
+    "generated_tokens": 128,
+    "kind": "measured",
+    "label": "iq-parity-fixed-http",
+    "prefill_tps": 3121.9351002525405,
+    "prompt_sha256": "63bc6a79e00b8d1edd20535494dac8f4a32861f82f040423003982330e319ac9",
+    "prompt_tokens": 1950,
+    "repetition": 1,
+    "timings": {
+      "cache_disk_enqueue_ms": 0.0005,
+      "cache_n": 0,
+      "cache_restore_ms": 0,
+      "cache_snapshot_ms": 8.8774,
+      "component_cache": {
+        "borrowed_capacity_bytes": 36700160,
+        "captured_capacity_bytes": 109641728,
+        "captured_checkpoint_ids": [
+          144
+        ],
+        "captures": 1,
+        "copied_payload_bytes": 72069280,
+        "deepest_disk_tokens": 0,
+        "deepest_live_tokens": 0,
+        "deepest_ram_tokens": 0,
+        "global_categories": {
+          "backing_assigned": {
+            "bytes": 36700160,
+            "peak_bytes": 36700160,
+            "reserved_bytes": 36700160
+          },
+          "backing_free": {
+            "bytes": 2059075584,
+            "peak_bytes": 2278359040,
+            "reserved_bytes": 0
+          },
+          "backing_materialized": {
+            "bytes": 36700160,
+            "peak_bytes": 36700160,
+            "reserved_bytes": 0
+          },
+          "metadata": {
+            "bytes": 155273688,
+            "peak_bytes": 155301928,
+            "reserved_bytes": 0
+          },
+          "private_state": {
+            "bytes": 138018816,
+            "peak_bytes": 138018816,
+            "reserved_bytes": 0
+          },
+          "private_tail": {
+            "bytes": 7864320,
+            "peak_bytes": 7864320,
+            "reserved_bytes": 0
+          },
+          "transfer_staging": {
+            "bytes": 0,
+            "peak_bytes": 0,
+            "reserved_bytes": 0
+          }
+        },
+        "global_ledger_bytes": 2433632728,
+        "global_peak_ledger_bytes": 2433660968,
+        "global_peak_persistence_pinned_bytes": 0,
+        "global_peak_ram_bytes": 2433660968,
+        "global_persistence_pinned_bytes": 0,
+        "global_ram_bytes": 2433632728,
+        "global_spill": {
+          "foreground_bytes": 8912896,
+          "foreground_copy_ms": 4.2326,
+          "idle_bytes": 27787264,
+          "idle_copy_ms": 5.8215,
+          "idle_failures": 0,
+          "reassignments": 2,
+          "residual_wait_ms": 4.347,
+          "stream_wait_ms": 0.0334
+        },
+        "prefilled_tokens": 1950,
+        "restored_bytes": 0,
+        "reuse": "none",
+        "schema": "component-cache-v1",
+        "selected_tokens": 0,
+        "selection_reason": 4
+      },
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "draft_rounds": 0,
+      "predicted_ms": 2190.611800000001,
+      "predicted_n": 128,
+      "predicted_per_second": 58.43116521147194,
+      "predicted_per_token_ms": 17.114154687500008,
+      "prompt_ms": 624.6126,
+      "prompt_n": 1950,
+      "prompt_per_second": 3121.9351002525405,
+      "prompt_per_token_ms": 0.32031415384615386
+    },
+    "wall_ms": 2834.905
+  },
+  {
+    "decode_tps": 56.98974554123142,
+    "generated_tokens": 128,
+    "kind": "measured",
+    "label": "iq-parity-fixed-http",
+    "prefill_tps": 3032.7056306612453,
+    "prompt_sha256": "9ac4ee707299efd24d7949f2e2d49dffc4dc27df22edf939f92172ec88a5c967",
+    "prompt_tokens": 1950,
+    "repetition": 2,
+    "timings": {
+      "cache_disk_enqueue_ms": 0.0006,
+      "cache_n": 0,
+      "cache_restore_ms": 0,
+      "cache_snapshot_ms": 10.8197,
+      "component_cache": {
+        "borrowed_capacity_bytes": 36700160,
+        "captured_capacity_bytes": 109641728,
+        "captured_checkpoint_ids": [
+          286
+        ],
+        "captures": 1,
+        "copied_payload_bytes": 72069280,
+        "deepest_disk_tokens": 0,
+        "deepest_live_tokens": 0,
+        "deepest_ram_tokens": 0,
+        "global_categories": {
+          "backing_assigned": {
+            "bytes": 36700160,
+            "peak_bytes": 36700160,
+            "reserved_bytes": 36700160
+          },
+          "backing_free": {
+            "bytes": 2083454976,
+            "peak_bytes": 2278359040,
+            "reserved_bytes": 0
+          },
+          "backing_materialized": {
+            "bytes": 73400320,
+            "peak_bytes": 73400320,
+            "reserved_bytes": 0
+          },
+          "metadata": {
+            "bytes": 155397988,
+            "peak_bytes": 155426332,
+            "reserved_bytes": 0
+          },
+          "private_state": {
+            "bytes": 207028224,
+            "peak_bytes": 207028224,
+            "reserved_bytes": 0
+          },
+          "private_tail": {
+            "bytes": 11796480,
+            "peak_bytes": 11796480,
+            "reserved_bytes": 0
+          },
+          "transfer_staging": {
+            "bytes": 0,
+            "peak_bytes": 0,
+            "reserved_bytes": 0
+          }
+        },
+        "global_ledger_bytes": 2567778148,
+        "global_peak_ledger_bytes": 2567806492,
+        "global_peak_persistence_pinned_bytes": 0,
+        "global_peak_ram_bytes": 2567806492,
+        "global_persistence_pinned_bytes": 0,
+        "global_ram_bytes": 2567778148,
+        "global_spill": {
+          "foreground_bytes": 8912896,
+          "foreground_copy_ms": 4.2326,
+          "idle_bytes": 64487424,
+          "idle_copy_ms": 12.5903,
+          "idle_failures": 0,
+          "reassignments": 3,
+          "residual_wait_ms": 4.3914,
+          "stream_wait_ms": 0.0517
+        },
+        "prefilled_tokens": 1950,
+        "restored_bytes": 0,
+        "reuse": "none",
+        "schema": "component-cache-v1",
+        "selected_tokens": 0,
+        "selection_reason": 4
+      },
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "draft_rounds": 0,
+      "predicted_ms": 2246.018099999999,
+      "predicted_n": 128,
+      "predicted_per_second": 56.98974554123142,
+      "predicted_per_token_ms": 17.54701640624999,
+      "prompt_ms": 642.9902,
+      "prompt_n": 1950,
+      "prompt_per_second": 3032.7056306612453,
+      "prompt_per_token_ms": 0.3297385641025641
+    },
+    "wall_ms": 2906.966
+  }
+]

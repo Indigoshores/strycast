@@ -1,0 +1,56 @@
+[
+  {
+    "bytes": 98479616,
+    "modified": "2026-10-29T19:43:30-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\gufo-iq-prefill-fixed.exe",
+    "sha256": "72200a67f689b308b4aa120a8e843709cd47a50d90fb918e0e0b0fde9c85a3d1"
+  },
+  {
+    "bytes": 98479616,
+    "modified": "2026-10-29T19:43:31-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\gufo-server-iq-prefill-fixed.exe",
+    "sha256": "72200a67f689b308b4aa120a8e843709cd47a50d90fb918e0e0b0fde9c85a3d1"
+  },
+  {
+    "bytes": 98479104,
+    "modified": "2026-10-29T19:43:46-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\gufo.exe",
+    "sha256": "0b57df75bdf6a8fd87fbdada54bb48cb6750b22a0cad57c04f556d979b44f2e3"
+  },
+  {
+    "bytes": 98479104,
+    "modified": "2026-10-29T19:43:50-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\gufo-server.exe",
+    "sha256": "0b57df75bdf6a8fd87fbdada54bb48cb6750b22a0cad57c04f556d979b44f2e3"
+  },
+  {
+    "bytes": 63469056,
+    "modified": "2026-10-29T19:43:31-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\qwen35ba3b_target_iq_fixed.exe",
+    "sha256": "c70237f254ba3e46876fa92b5f232fb1c7adafba5c1656f804b1da9559552201"
+  },
+  {
+    "bytes": 63469056,
+    "modified": "2026-10-29T19:44:05-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\qwen35ba3b_target_test.exe",
+    "sha256": "e2d35db408fb284ee25067e376a076b573ba8548bb82c813dd973e36ea785038"
+  },
+  {
+    "bytes": 18017,
+    "modified": "2026-10-29T19:47:15-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\results\\iq-prefill-verification-fix.patch",
+    "sha256": "f1f9000d0471991157124b91158d7f3fb7627c10a66d1858f0e91fffa5d31fa5"
+  },
+  {
+    "bytes": 1675,
+    "modified": "2026-10-29T19:40:14-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\results\\iq-parity-fixed-full-target.log",
+    "sha256": "65d773efa589a87207dcbf016ce3e29f11612d282ea4c663d3ede838a29e4e0a"
+  },
+  {
+    "bytes": 1678,
+    "modified": "2026-10-29T19:44:44-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\results\\iq-parity-fixed-control-full-target.log",
+    "sha256": "fd8b82211bf0665c09bc65297f99af8d10b93b9ff3f2aad5d4924d6ee9b6e4f1"
+  }
+]

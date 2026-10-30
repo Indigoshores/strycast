@@ -1,0 +1,50 @@
+[
+  {
+    "bytes": 98479616,
+    "modified": "2026-10-29T19:00:17-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\gufo-iq-prefill-candidate.exe",
+    "sha256": "f8db1b80c81752676f24a7ca8f7bd3fe6030fe66248a69edcaf9cffd6b1c386d"
+  },
+  {
+    "bytes": 98479616,
+    "modified": "2026-10-29T19:00:17-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\gufo-server-iq-prefill-candidate.exe",
+    "sha256": "f8db1b80c81752676f24a7ca8f7bd3fe6030fe66248a69edcaf9cffd6b1c386d"
+  },
+  {
+    "bytes": 98479104,
+    "modified": "2026-10-29T19:02:55-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\gufo.exe",
+    "sha256": "3c63da108be9a2167774479ccfb97c1fccc270a249f69cf2cd3c6e80cd3a135d"
+  },
+  {
+    "bytes": 98479104,
+    "modified": "2026-10-29T19:02:57-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\gufo-server.exe",
+    "sha256": "3c63da108be9a2167774479ccfb97c1fccc270a249f69cf2cd3c6e80cd3a135d"
+  },
+  {
+    "bytes": 49372672,
+    "modified": "2026-10-29T19:00:17-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\qwen35ba3b_moe_ops_test.exe",
+    "sha256": "0ce8aa99a387883807cc2aa9099b7eabb3b0546dc10e290506d280f51798fce1"
+  },
+  {
+    "bytes": 63467520,
+    "modified": "2026-10-29T19:00:18-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\qwen35ba3b_target_test.exe",
+    "sha256": "20c7351e78a95fee67fc77af999b5e3b5e9d7b71c0b7d91c11f5e9c889957260"
+  },
+  {
+    "bytes": 63467520,
+    "modified": "2026-10-29T19:03:03-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast\\build\\windows-release\\qwen35ba3b_target_control.exe",
+    "sha256": "4670d76b9b3228b903fbb1147757dec7846f556546d485b71b227acca90177b2"
+  },
+  {
+    "bytes": 27660,
+    "modified": "2026-10-29T19:16:19-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\results\\iq-prefill-implementation.patch",
+    "sha256": "773a8ca00a511eefa4a3446c5d781d855cebb21ee38c2be4f301289f87d3a09f"
+  }
+]

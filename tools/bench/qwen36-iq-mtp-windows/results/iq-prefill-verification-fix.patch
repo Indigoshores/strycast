@@ -1,0 +1,349 @@
+diff --git a/docs/models/qwen3.6-35b-a3b/BENCHMARKS.md b/docs/models/qwen3.6-35b-a3b/BENCHMARKS.md
+index 58a62ab..2a07259 100644
+--- a/docs/models/qwen3.6-35b-a3b/BENCHMARKS.md
++++ b/docs/models/qwen3.6-35b-a3b/BENCHMARKS.md
+@@ -3,7 +3,8 @@
+ ## Experimental IQ4_XS Windows screen (October 29, 2026)
+ 
+ These timings are **not a qualified default**; [Quality](QUALITY.md) records
+-the remaining verification parity failures. Same 17,730,509,792-byte IQ4_XS
++the verification stream-ordering fix and remaining qualification limits.
++Same 17,730,509,792-byte IQ4_XS
+ GGUF, gfx1151 / 128 GiB Strix Halo, native Windows 11, TheRock 10.0.0,
+ RelWithDebInfo, testing enabled in both builds, speculation off. Only
+ `GUFO_QWEN_IQ_PREFILL` differs between the matched control and candidate.
+@@ -20,6 +21,16 @@ RelWithDebInfo, testing enabled in both builds, speculation off. Only
+ 
+ The reference K-quant benchmark results below remain separate measurements.
+ 
++After fixing scratch initialization on the inference stream, an isolated native
++repeat of the same command measured pp512 2,186.91 +/- 26.99 tok/s and pp2048
++3,218.73 +/- 12.37 tok/s. The first follow-up screen overlapped the tail of the
++operator suite and was discarded; these values come from the subsequent run
++with no competing tests. Full-model serial and concurrent verification now pass.
++Separate native tg128 measured 59.01 +/- 0.09 tok/s; HTTP prefill averaged
++3,077.33 tok/s and decode 57.71 tok/s over two 1950-input/128-output requests
++after one excluded warmup. This correctness fix preserves the fast prefill path;
++it does not introduce a decode-kernel optimization.
++
+ AMD Strix Halo `gfx1151`, 128 GB unified memory. Gufo versus llama.cpp
+ `b11069` (`68d9053a`), both compiled with the pinned ROCm 7.2.3 toolchain.
+ Targets are the Unsloth UD-Q4_K_XL / UD-Q6_K_XL / UD-Q8_K_XL files and the
+diff --git a/docs/models/qwen3.6-35b-a3b/EXPERIMENTS.md b/docs/models/qwen3.6-35b-a3b/EXPERIMENTS.md
+index 653f4c8..75dc220 100644
+--- a/docs/models/qwen3.6-35b-a3b/EXPERIMENTS.md
++++ b/docs/models/qwen3.6-35b-a3b/EXPERIMENTS.md
+@@ -7,9 +7,12 @@ tile-local dequantization reuses the routed F16 WMMA byte-code/scale staging,
+ including paired gate/up and wide down tiles. No full-model FP16 weight copy
+ and no GPU decode changes. The operator/independent CPU checks pass, and
+ IQ4_XS native pp2048 improves 266 -> 3193 tok/s (HTTP 259 -> 3105).
+-Full-model serial-verification parity fails on the candidate; the control
+-passes serial verification but fails concurrent verification. This is not a
+-retained production default. [Quality](QUALITY.md), [Benchmarks](BENCHMARKS.md).
++The initial serial/concurrent verification failures were fixed by ordering MoE
++scratch initialization on the arena's nonblocking HIP stream; no kernel
++arithmetic or assertion was weakened. Snapshot replay, all eight serial rows,
++and three concurrent sessions (23 rows) now pass on the Windows IQ4_XS fixture.
++The option remains experimental/default-off pending broader qualification.
++[Quality](QUALITY.md), [Benchmarks](BENCHMARKS.md).
+ 
+ | Experiment | Decision / qualification |
+ | --- | --- |
+diff --git a/docs/models/qwen3.6-35b-a3b/QUALITY.md b/docs/models/qwen3.6-35b-a3b/QUALITY.md
+index 7e04073..adbecc2 100644
+--- a/docs/models/qwen3.6-35b-a3b/QUALITY.md
++++ b/docs/models/qwen3.6-35b-a3b/QUALITY.md
+@@ -22,14 +22,31 @@ dispatch the already implemented IQ3_S/IQ4_XS routines. `Dot` and `Dequantize`
+ now dispatch those types; the synthetic test checks the generic CPU dispatcher
+ against the canonical IQ routines, and `ggml_gemm_parity_test` passes.
+ 
+-**Full target qualification is still FAIL.** On the downloaded 733-tensor
+-IQ4_XS checkpoint, both option-on and option-off runs pass the two CPU/GPU
+-greedy fixtures, prefill/decode greedy comparison, and 1100-token one-chunk
+-versus split greedy comparison. The candidate then fails bit-exact serial
+-verification; the control passes that check but fails concurrent verification.
+-Thus the serial mismatch must not be dismissed as a reproduced baseline
+-failure. Tests and thresholds are unchanged. The candidate remains default-off;
+-task accuracy, MTP and concurrent execution are not certified for this IQ file.
++**Follow-up: the Windows IQ4_XS model target now passes.** The initial
++option-on serial failure and option-off concurrent failure exposed a stream
++ordering bug in `QwenGpuArena`: its MoE scratch clear used `hipMemset` on the
++default stream, while inference uses `hipStreamNonBlocking`. A later MMQ pool
++allocation's device synchronization could execute that clear after the scratch
++already held live outputs. Operator traces first diverged in layer 34 on the
++cold IQ route: the router, expert ids, weights and activations were populated
++before the allocation and zero afterwards. Snapshot replay then disagreed even
++with sequential decode, independently of verification arithmetic.
++
++The clear now uses `hipMemsetAsync(..., stream)` on the arena stream, ordered
++before all prefill/decode work. No IQ kernel arithmetic or tolerance changed.
++The strengthened model target additionally demands exact snapshot decode replay;
++the two CPU/GPU greedy fixtures, prefill/decode greedy check, 1100-token chunk
++greedy check, eight serial verification rows and three concurrent sessions
++(23 rows) pass on the downloaded 733-tensor IQ4_XS model. A focused manual
++`qwen35ba3b_verification_probe MODEL serial|concurrent` also compares saved
++layer outputs and logits without adding a device-wide synchronization workaround.
++The full target passes with the IQ prefill option both ON and OFF.
++
++Long-prompt split versus single-chunk logits are still not required to be exact:
++the option-on run reports max absolute difference 1.2138 and RMSE 0.219402 while
++preserving the tested greedy prediction. This differs from the exact decode /
++verification contract above. The option remains default-off; task accuracy,
++MTP acceptance, sustained concurrency and other operating systems remain unqualified.
+ 
+ `qwen35ba3b_target_test` (gated by `GUFO_QWEN35BA3B_MODEL`, skipped when unset)
+ requires the loaded config to report an MoE architecture, then runs:
+diff --git a/docs/models/qwen3.6-35b-a3b/README.md b/docs/models/qwen3.6-35b-a3b/README.md
+index f26fe09..405473b 100644
+--- a/docs/models/qwen3.6-35b-a3b/README.md
++++ b/docs/models/qwen3.6-35b-a3b/README.md
+@@ -43,11 +43,13 @@ at native pp2048 versus 266 with the option off, and 3,105 versus 259 tok/s
+ in an identical-input HTTP screen. These are experimental Windows/TheRock
+ 10.0.0 results; see [Benchmarks](BENCHMARKS.md).
+ 
+-**Not production-qualified:** operator checks and the tested CPU/GPU greedy
+-fixtures pass, but the model target test fails bit-exact serial verification
+-after optimized prefill. The option-off control also fails concurrent
+-verification. No assertion or tolerance was relaxed; see [Quality](QUALITY.md).
+-Do not infer MTP, concurrent-serving, or quality qualification from these timings.
++The initial serial and concurrent verification failures were traced to MoE
++scratch initialization on the default HIP stream racing inference on a
++nonblocking stream. Initializing on the arena stream fixes them: the Windows
++IQ4_XS model target now passes, including exact snapshot replay, all eight
++serial rows, and three concurrent sessions (23 rows). See [Quality](QUALITY.md).
++The option remains experimental and default-off. These fixture checks do not
++establish task accuracy, MTP acceptance, or sustained concurrent-serving quality.
+ 
+ Enable it only in a separate experimental build with
+ `cmake --preset windows-release -DGUFO_QWEN_IQ_PREFILL=ON`, retaining the
+diff --git a/src/models/qwen/hip/arena.cpp b/src/models/qwen/hip/arena.cpp
+index 1ae6702..cf3be3c 100644
+--- a/src/models/qwen/hip/arena.cpp
++++ b/src/models/qwen/hip/arena.cpp
+@@ -926,8 +926,10 @@ QwenGpuArena::QwenGpuArena(const core::ModelConfig& config,
+     if (config_.IsMoE()) {
+       const std::size_t moe_bytes = MoeScratchBytes(config_, batch);
+       HIP_CHECK(hipMalloc(&d_moe_scratch, moe_bytes));
++      // Initialize on the arena's nonblocking stream. A default-stream memset
++      // can run late and erase live prefill/decode work at a later device sync.
+       // The fused router's completion counter must start at zero.
+-      HIP_CHECK(hipMemset(d_moe_scratch, 0, moe_bytes));
++      HIP_CHECK(hipMemsetAsync(d_moe_scratch, 0, moe_bytes, stream));
+     }
+ 
+     Reset();
+diff --git a/tests/models/qwen35ba3b/CMakeLists.txt b/tests/models/qwen35ba3b/CMakeLists.txt
+index 1af2d77..a7ef52b 100644
+--- a/tests/models/qwen35ba3b/CMakeLists.txt
++++ b/tests/models/qwen35ba3b/CMakeLists.txt
+@@ -23,6 +23,9 @@ if (ENGINE_ENABLE_HIP)
+   add_executable(qwen35ba3b_verify_bench
+     ${CMAKE_CURRENT_SOURCE_DIR}/verify_bench.cpp)
+   target_link_libraries(qwen35ba3b_verify_bench PRIVATE gufo_core)
++  add_executable(qwen35ba3b_verification_probe
++    ${CMAKE_CURRENT_SOURCE_DIR}/verification_probe.cpp)
++  target_link_libraries(qwen35ba3b_verification_probe PRIVATE gufo_core)
+ endif()
+ if (ENGINE_ENABLE_HIP)
+   add_executable(qwen35ba3b_prefill_chunk_bench
+diff --git a/tests/models/qwen35ba3b/target_test.cpp b/tests/models/qwen35ba3b/target_test.cpp
+index 9672fb3..f903a65 100644
+--- a/tests/models/qwen35ba3b/target_test.cpp
++++ b/tests/models/qwen35ba3b/target_test.cpp
+@@ -188,6 +188,20 @@ void CheckVerificationMatchesDecode(
+     decoded.emplace_back(view.begin(), view.end());
+   }
+   executor->RestoreSnapshot(*snapshot);
++  // A late initialization on another stream must not erase live MoE scratch
++  // during a first-use MMQ allocation. Replaying the same decode from the
++  // snapshot must reproduce every logit before comparing verification.
++  for (std::size_t r = 0; r < kRows; ++r) {
++    (void)executor->ForwardToken(candidates[r],
++                                 position + static_cast<std::uint32_t>(r));
++    const auto replayed = executor->CopyLastLogits();
++    Expect(replayed.size() == decoded[r].size(), "replay logit width mismatch");
++    Expect(std::memcmp(replayed.data(), decoded[r].data(),
++                       replayed.size_bytes()) == 0,
++           "snapshot replay changed single-token logits at row " +
++               std::to_string(r));
++  }
++  executor->RestoreSnapshot(*snapshot);
+   (void)executor->ForwardVerificationChunk(candidates, position, true);
+   std::size_t differing_rows = 0;
+   for (std::size_t r = 0; r < kRows; ++r) {
+diff --git a/tests/models/qwen35ba3b/verification_probe.cpp b/tests/models/qwen35ba3b/verification_probe.cpp
+new file mode 100644
+index 0000000..767e3d5
+--- /dev/null
++++ b/tests/models/qwen35ba3b/verification_probe.cpp
+@@ -0,0 +1,170 @@
++// Focused diagnostic, not a substitute for qwen35ba3b_target_test.
++#include <algorithm>
++#include <array>
++#include <cmath>
++#include <cstring>
++#include <iostream>
++#include <memory>
++#include <span>
++#include <stdexcept>
++#include <string>
++#include <vector>
++
++#include "src/core/gguf_reader.hpp"
++#include "src/models/qwen/hip/executor.hpp"
++#include "src/models/qwen/tokenizer.hpp"
++
++namespace {
++using Executor = gufo::hip::QwenGpuExecutor;
++using Token = gufo::tokenization::TokenId;
++constexpr std::array<const char*, 2> kTexts{
++    "Virtual memory lets an operating system give each process its own address "
++    "space. Pages map virtual addresses to physical memory. A page fault "
++    "occurs when the requested page is unavailable.",
++    "A train leaves the station at noon and travels at sixty kilometers per "
++    "hour. Another train leaves one hour later at ninety kilometers per hour.",
++};
++
++std::size_t Compare(std::string label, std::span<const float> expected,
++                    std::span<const float> actual) {
++  if (expected.size() != actual.size())
++    throw std::runtime_error("diagnostic size mismatch: " + label);
++  std::size_t different = 0;
++  float max_abs = 0.0F;
++  for (std::size_t i = 0; i < expected.size(); ++i) {
++    if (std::memcmp(&expected[i], &actual[i], sizeof(float)) != 0) {
++      ++different;
++      max_abs = std::max(max_abs, std::fabs(expected[i] - actual[i]));
++    }
++  }
++  std::cout << label << " different=" << different << " max_abs=" << max_abs
++            << '\n';
++  return different;
++}
++
++struct Session {
++  std::unique_ptr<Executor> executor;
++  std::vector<Token> tokens;
++  std::uint32_t position;
++  std::unique_ptr<gufo::hip::QwenGpuSnapshot> snapshot;
++  std::vector<std::vector<float>> logits;
++  std::vector<float> hidden;
++};
++}  // namespace
++
++int main(int argc, char** argv) {
++  if (argc != 3) {
++    std::cerr
++        << "usage: qwen35ba3b_verification_probe MODEL serial|concurrent\n";
++    return 2;
++  }
++  try {
++    const bool concurrent = std::string(argv[2]) == "concurrent";
++    if (!concurrent && std::string(argv[2]) != "serial")
++      throw std::runtime_error("unknown diagnostic mode");
++    std::string error;
++    const std::shared_ptr<const gufo::core::GgufReader> reader =
++        gufo::core::GgufReader::OpenFile(argv[1], &error);
++    if (!reader)
++      throw std::runtime_error(error);
++    const auto model = gufo::hip::QwenGpuModel::CreateFromGguf(reader, &error);
++    if (!model)
++      throw std::runtime_error(error);
++    const auto& config = model->GetConfig();
++    const std::size_t taps = std::min<std::size_t>(16, config.num_layers);
++    std::vector<std::uint32_t> layers;
++    for (std::uint32_t i = 0; i < taps; ++i)
++      layers.push_back(config.num_layers - static_cast<std::uint32_t>(taps) +
++                       i);
++    const std::size_t width = taps * config.hidden_size;
++    const std::array<std::size_t, 3> rows{8, 8, 7};
++    std::vector<Session> sessions;
++    const std::size_t count = concurrent ? 3 : 1;
++    std::size_t differing = 0;
++    for (std::size_t s = 0; s < count; ++s) {
++      auto& session = sessions.emplace_back();
++      session.executor = Executor::Create(model, &error, 4096);
++      if (!session.executor)
++        throw std::runtime_error(error);
++      auto& executor = *session.executor;
++      executor.SetPromptHiddenCapture(true, layers);
++      session.tokens =
++          executor.GetTokenizer().Encode(kTexts[s % kTexts.size()]);
++      session.position =
++          static_cast<std::uint32_t>(session.tokens.size() - rows[s]);
++      executor.Reset();
++      (void)executor.ForwardPromptBatch(
++          std::span(session.tokens).first(session.position));
++      session.snapshot = executor.SaveSnapshot(session.position);
++      const auto candidates =
++          std::span(session.tokens).subspan(session.position);
++      if (concurrent) {
++        (void)executor.ForwardVerificationChunk(candidates, session.position,
++                                                true);
++        const auto hidden = executor.GetVerificationHiddenStates();
++        session.hidden.assign(hidden.begin(), hidden.end());
++        for (std::size_t r = 0; r < rows[s]; ++r) {
++          const auto logits = executor.CopyVerificationLogits(r);
++          session.logits.emplace_back(logits.begin(), logits.end());
++        }
++      } else {
++        for (std::size_t r = 0; r < rows[s]; ++r) {
++          (void)executor.ForwardToken(
++              candidates[r], session.position + static_cast<std::uint32_t>(r));
++          const auto logits = executor.CopyLastLogits();
++          session.logits.emplace_back(logits.begin(), logits.end());
++          const auto hidden = executor.CopyLastHidden();
++          session.hidden.insert(session.hidden.end(), hidden.begin(),
++                                hidden.end());
++        }
++        executor.RestoreSnapshot(*session.snapshot);
++        for (std::size_t r = 0; r < rows[s]; ++r) {
++          (void)executor.ForwardToken(
++              candidates[r], session.position + static_cast<std::uint32_t>(r));
++          differing += Compare("snapshot-replay row=" + std::to_string(r),
++                               session.logits[r], executor.CopyLastLogits());
++          if (r == 0) {
++            const auto actual = executor.CopyLastHidden();
++            for (std::size_t layer = 0; layer < taps; ++layer) {
++              const auto offset = layer * config.hidden_size;
++              Compare(
++                  "snapshot-replay row=0 layer=" +
++                      std::to_string(layers[layer]),
++                  std::span(session.hidden).subspan(offset, config.hidden_size),
++                  actual.subspan(offset, config.hidden_size));
++            }
++          }
++        }
++      }
++      executor.RestoreSnapshot(*session.snapshot);
++    }
++    std::vector<gufo::hip::QwenGpuVerificationItem> items;
++    for (auto& session : sessions)
++      items.push_back({session.executor.get(),
++                       std::span(session.tokens).subspan(session.position),
++                       session.position, true});
++    (void)Executor::ForwardVerificationBatch(items);
++    for (std::size_t s = 0; s < count; ++s) {
++      const auto actual = sessions[s].executor->GetVerificationHiddenStates();
++      if (actual.size() != rows[s] * width)
++        throw std::runtime_error("hidden capture size mismatch");
++      for (std::size_t layer = 0; layer < taps; ++layer) {
++        const auto offset = layer * config.hidden_size;
++        Compare(
++            "session=" + std::to_string(s) +
++                " row=0 layer=" + std::to_string(layers[layer]),
++            std::span(sessions[s].hidden).subspan(offset, config.hidden_size),
++            actual.subspan(offset, config.hidden_size));
++      }
++      for (std::size_t r = 0; r < rows[s]; ++r)
++        differing += Compare("verification session=" + std::to_string(s) +
++                                 " row=" + std::to_string(r),
++                             sessions[s].logits[r],
++                             sessions[s].executor->CopyVerificationLogits(r));
++    }
++    return differing == 0 ? 0 : 1;
++  } catch (const std::exception& e) {
++    std::cerr << e.what() << '\n';
++    return 1;
++  }
++}

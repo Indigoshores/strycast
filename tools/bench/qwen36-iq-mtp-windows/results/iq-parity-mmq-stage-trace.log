@@ -1,0 +1,108 @@
+Command: C:\Users\Butch\Documents\02_Apps\strycast\build\windows-release\qwen35ba3b_verification_probe.exe ["C:\\Users\\Butch\\Documents\\10-Models\\models\\Qwen3.6-35B-A3B-UD-IQ4_XS.gguf" "serial"]
+Started: 2026-10-29T19:35:32-04:00
+trace step=0 input bytes=8192 hash=323de5993b3afe17
+trace step=0 normed bytes=8192 hash=78c5644d70874061
+trace step=0 qkv bytes=32768 hash=d015a6afa7233b71
+trace step=0 gate bytes=16384 hash=cdb7e908a14fbc86
+trace step=0 alpha bytes=128 hash=ea45eb91b6a3cb01
+trace step=0 beta bytes=128 hash=2a72a3a017b2d5d7
+trace step=0 conv-before bytes=131072 hash=a1d4f3dcb825e164
+trace step=0 recurrent-before bytes=2097152 hash=bece70e1029865c7
+trace step=0 ssm-out bytes=16384 hash=250edeb9041f60e9
+trace step=0 mixer-out bytes=8192 hash=3004a45954392c11
+trace step=0 ffn-normed bytes=8192 hash=3e8471001b02f78a
+trace step=0 router-before-shared bytes=1024 hash=fd4884b78683656a
+trace step=0 ids-before-shared bytes=32 hash=1ec4130f23988e53
+trace step=0 router-before-experts bytes=1024 hash=fd4884b78683656a
+trace step=0 shared-before-experts bytes=8192 hash=19ec2d4ebf3fc19e
+trace step=0 gate-before-down bytes=16384 hash=eaf643c9edcce9aa
+trace step=0 router-before-down bytes=1024 hash=fd4884b78683656a
+trace step=0 mmq-entry bytes=1024 hash=fd4884b78683656a
+trace step=0 mmq-after-pool bytes=1024 hash=51d88627df287325
+mmq addresses step=0 router=0000000A8F390100 out=0000000A8F398800 pool=0000000AB3C60000 bytes=4608 type=14
+trace step=0 mmq-after-quantize bytes=1024 hash=51d88627df287325
+trace step=0 mmq-after-dispatch bytes=1024 hash=51d88627df287325
+trace step=0 router bytes=1024 hash=51d88627df287325
+trace step=0 ids bytes=32 hash=c8210784d8af5a5
+trace step=0 weights bytes=32 hash=c8210784d8af5a5
+trace step=0 expert-gate bytes=16384 hash=9c1bda7f8c872325
+trace step=0 expert-down bytes=65536 hash=eb05052ea5b62325
+trace step=0 shared-out bytes=8192 hash=b9d103fd6854a325
+trace step=8 input bytes=8192 hash=323de5993b3afe17
+trace step=8 normed bytes=8192 hash=78c5644d70874061
+trace step=8 qkv bytes=32768 hash=d015a6afa7233b71
+trace step=8 gate bytes=16384 hash=cdb7e908a14fbc86
+trace step=8 alpha bytes=128 hash=ea45eb91b6a3cb01
+trace step=8 beta bytes=128 hash=2a72a3a017b2d5d7
+trace step=8 conv-before bytes=131072 hash=a1d4f3dcb825e164
+trace step=8 recurrent-before bytes=2097152 hash=bece70e1029865c7
+trace step=8 ssm-out bytes=16384 hash=250edeb9041f60e9
+trace step=8 mixer-out bytes=8192 hash=3004a45954392c11
+trace step=8 ffn-normed bytes=8192 hash=3e8471001b02f78a
+trace step=8 router-before-shared bytes=1024 hash=fd4884b78683656a
+trace step=8 ids-before-shared bytes=32 hash=1ec4130f23988e53
+trace step=8 router-before-experts bytes=1024 hash=fd4884b78683656a
+trace step=8 shared-before-experts bytes=8192 hash=19ec2d4ebf3fc19e
+trace step=8 gate-before-down bytes=16384 hash=eaf643c9edcce9aa
+trace step=8 router-before-down bytes=1024 hash=fd4884b78683656a
+trace step=8 mmq-entry bytes=1024 hash=fd4884b78683656a
+trace step=8 mmq-after-pool bytes=1024 hash=fd4884b78683656a
+mmq addresses step=8 router=0000000A8F390100 out=0000000A8F398800 pool=0000000AB3C60000 bytes=4608 type=14
+trace step=8 mmq-after-quantize bytes=1024 hash=fd4884b78683656a
+trace step=8 mmq-after-dispatch bytes=1024 hash=fd4884b78683656a
+trace step=8 router bytes=1024 hash=fd4884b78683656a
+trace step=8 ids bytes=32 hash=1ec4130f23988e53
+trace step=8 weights bytes=32 hash=13b40a9d502baf41
+trace step=8 expert-gate bytes=16384 hash=eaf643c9edcce9aa
+trace step=8 expert-down bytes=65536 hash=be96d59b86374396
+trace step=8 shared-out bytes=8192 hash=19ec2d4ebf3fc19e
+snapshot-replay row=0 different=248320 max_abs=1.77725
+snapshot-replay row=0 layer=24 different=0 max_abs=0
+snapshot-replay row=0 layer=25 different=0 max_abs=0
+snapshot-replay row=0 layer=26 different=0 max_abs=0
+snapshot-replay row=0 layer=27 different=0 max_abs=0
+snapshot-replay row=0 layer=28 different=0 max_abs=0
+snapshot-replay row=0 layer=29 different=0 max_abs=0
+snapshot-replay row=0 layer=30 different=0 max_abs=0
+snapshot-replay row=0 layer=31 different=0 max_abs=0
+snapshot-replay row=0 layer=32 different=0 max_abs=0
+snapshot-replay row=0 layer=33 different=0 max_abs=0
+snapshot-replay row=0 layer=34 different=2048 max_abs=1.41193
+snapshot-replay row=0 layer=35 different=2048 max_abs=0.737977
+snapshot-replay row=0 layer=36 different=2048 max_abs=0.351128
+snapshot-replay row=0 layer=37 different=2048 max_abs=0.247234
+snapshot-replay row=0 layer=38 different=2048 max_abs=0.368716
+snapshot-replay row=0 layer=39 different=2048 max_abs=0.256861
+snapshot-replay row=1 different=248319 max_abs=0.970178
+snapshot-replay row=2 different=248319 max_abs=0.125823
+snapshot-replay row=3 different=248320 max_abs=0.170744
+snapshot-replay row=4 different=248319 max_abs=0.0803051
+snapshot-replay row=5 different=248318 max_abs=0.0961237
+snapshot-replay row=6 different=248317 max_abs=0.124829
+snapshot-replay row=7 different=248317 max_abs=0.0647626
+session=0 row=0 layer=24 different=0 max_abs=0
+session=0 row=0 layer=25 different=0 max_abs=0
+session=0 row=0 layer=26 different=0 max_abs=0
+session=0 row=0 layer=27 different=0 max_abs=0
+session=0 row=0 layer=28 different=0 max_abs=0
+session=0 row=0 layer=29 different=0 max_abs=0
+session=0 row=0 layer=30 different=0 max_abs=0
+session=0 row=0 layer=31 different=0 max_abs=0
+session=0 row=0 layer=32 different=0 max_abs=0
+session=0 row=0 layer=33 different=0 max_abs=0
+session=0 row=0 layer=34 different=2048 max_abs=1.41193
+session=0 row=0 layer=35 different=2048 max_abs=0.737977
+session=0 row=0 layer=36 different=2048 max_abs=0.351128
+session=0 row=0 layer=37 different=2048 max_abs=0.247234
+session=0 row=0 layer=38 different=2048 max_abs=0.368716
+session=0 row=0 layer=39 different=2048 max_abs=0.256861
+verification session=0 row=0 different=248320 max_abs=1.77725
+verification session=0 row=1 different=248319 max_abs=0.970178
+verification session=0 row=2 different=248319 max_abs=0.125823
+verification session=0 row=3 different=248320 max_abs=0.170744
+verification session=0 row=4 different=248319 max_abs=0.0803051
+verification session=0 row=5 different=248318 max_abs=0.0961237
+verification session=0 row=6 different=248317 max_abs=0.124829
+verification session=0 row=7 different=248317 max_abs=0.0647626
+
+Completed: 2026-10-29T19:35:38-04:00; error: exit status 1

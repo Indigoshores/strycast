@@ -1,0 +1,46 @@
+{
+  "protocol": "one excluded warmup; 2 natural tasks x 2 measured repetitions; greedy; no cache; 256 output cap; fixed binary; fresh process per arm; sequential servers",
+  "scores": [
+    {
+      "arm": "ar",
+      "pooled_decode_tps": 57.18539803698052,
+      "gain_vs_ar": 1,
+      "all_outputs_match_ar": true,
+      "generated_tokens": 1024,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "acceptance": 0
+    },
+    {
+      "arm": "mtp2",
+      "pooled_decode_tps": 73.17815096506759,
+      "gain_vs_ar": 1.279664975274718,
+      "all_outputs_match_ar": true,
+      "generated_tokens": 1024,
+      "draft_tokens": 824,
+      "accepted_tokens": 604,
+      "acceptance": 0.7330097087378641
+    },
+    {
+      "arm": "dflash3",
+      "pooled_decode_tps": 61.80052547828056,
+      "gain_vs_ar": 1.0807046483844625,
+      "all_outputs_match_ar": true,
+      "generated_tokens": 1024,
+      "draft_tokens": 1148,
+      "accepted_tokens": 636,
+      "acceptance": 0.554006968641115
+    },
+    {
+      "arm": "dflash7",
+      "pooled_decode_tps": 45.05454358484588,
+      "gain_vs_ar": 0.7878679720950812,
+      "all_outputs_match_ar": true,
+      "generated_tokens": 1024,
+      "draft_tokens": 2212,
+      "accepted_tokens": 700,
+      "acceptance": 0.31645569620253167
+    }
+  ],
+  "winner": "mtp2"
+}

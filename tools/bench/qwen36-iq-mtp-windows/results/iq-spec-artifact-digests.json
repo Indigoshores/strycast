@@ -1,0 +1,56 @@
+[
+  {
+    "bytes": 9921024,
+    "modified": "2026-10-29T20:14:30-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\spec-tools.exe",
+    "sha256": "64a8e9f8ec227800054493544e447db316bd8c0cc162036cde064610db5a3c7c"
+  },
+  {
+    "bytes": 4316672,
+    "modified": "2026-10-29T20:14:31-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\start-qwen36-iq-mtp2.exe",
+    "sha256": "984e574e07f77aff8e8e0c39bc10a687692b38bd1e77895d041292929606e6b3"
+  },
+  {
+    "bytes": 14268,
+    "modified": "2026-10-29T20:14:29-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\spec-tools.go",
+    "sha256": "065a29064bae912451dac6272dc23001f3a05e8dfba1e12c780fe6552b133c9f"
+  },
+  {
+    "bytes": 18637,
+    "modified": "2026-10-29T20:14:29-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\spec-validation.go",
+    "sha256": "3f5403beda951bded7539d9ae4e60634981744bb18e1165be766461e03d0ad1e"
+  },
+  {
+    "bytes": 3334,
+    "modified": "2026-10-29T20:14:29-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\start-qwen36-iq-mtp2.go",
+    "sha256": "fd8e72ff64564bc0ed1f2e55793a085bf9865655677dfa906fa80f82f35ee7b6"
+  },
+  {
+    "bytes": 1314,
+    "modified": "2026-10-29T20:01:19-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\results\\iq-spec-natural-screen-summary.json",
+    "sha256": "53f08d330990949514d01fcfdcd97dbf3d22e7990966c8c4e559e7eb5d4cb311"
+  },
+  {
+    "bytes": 370,
+    "modified": "2026-10-29T20:05:01-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\results\\iq-spec-validation-v2-summary.json",
+    "sha256": "11392297b15aee5c6d151980d8384089cd968a69f7148a92379de02ba291c0db"
+  },
+  {
+    "bytes": 284,
+    "modified": "2026-10-29T20:07:31-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\results\\iq-spec-json-schema-summary.json",
+    "sha256": "1eeb7bd74161f01621cd22317c62b1bafe6840e19a25e346665c3e3964e49dba"
+  },
+  {
+    "bytes": 1209,
+    "modified": "2026-10-29T20:15:45-04:00",
+    "path": "C:\\Users\\Butch\\Documents\\02_Apps\\strycast-bench-tools\\results\\iq-spec-mtp2-launch-profile.json",
+    "sha256": "126444c06a37fd4e25deed1d9633c7da54babb0ae66b81ab8b2b1b4517205ed8"
+  }
+]

@@ -1,0 +1,291 @@
+Command: C:\Users\Butch\Documents\02_Apps\strycast\build\windows-release\qwen35ba3b_moe_ops_test.exe []
+Started: 2026-10-29T19:41:02-04:00
+router top-k: OK
+decode router: OK
+mmq gated experts: OK
+decode MoE (mmq) vs CPU: max_abs=3.93719 rmse=1.63488 worst_idx=45 gpu=298.264 cpu=302.201
+decode router: OK
+fallback gated experts: OK
+decode MoE (fallback) vs CPU: max_abs=0.00183105 rmse=0.00045496 worst_idx=73 gpu=926.961 cpu=926.959
+grouped BF16 gate/up tokens=1: max_abs=0.00234807 rel=0.00148738 non_finite=0
+grouped BF16 gate/up tokens=7: max_abs=0.00286895 rel=0.00121139 non_finite=0
+grouped BF16 gate/up tokens=100: max_abs=0.00406116 rel=0.00183763 non_finite=0
+grouped BF16 gate/up tokens=512: max_abs=0.00410676 rel=0.00158891 non_finite=0
+grouped BF16 down tokens=1: max_abs=0.00209922 rel=0.00166783 non_finite=0
+grouped BF16 down tokens=7: max_abs=0.0023998 rel=0.0015648 non_finite=0
+grouped BF16 down tokens=100: max_abs=0.00221262 rel=0.00132782 non_finite=0
+grouped BF16 down tokens=512: max_abs=0.00209004 rel=0.00130997 non_finite=0
+grouped BF16 experts: OK
+dense BF16 WMMA rows=1: max_abs=0.00265276 rel=8.04322e-05 non_finite=0
+dense BF16 WMMA rows=100: max_abs=0.00375366 rel=0.000106057 non_finite=0
+dense BF16 WMMA rows=512: max_abs=0.00375366 rel=0.000106057 non_finite=0
+dense BF16 WMMA: OK
+tiled dense BF16 WMMA: OK
+routed F16 Q8_0 gate/up tokens=1 tile_rows=16: rel=0.000230241 non_finite=0
+routed F16 Q8_0 gate/up tokens=1 tile_rows=48: rel=0.000230241 non_finite=0
+routed F16 Q8_0 gate/up tokens=1 tile_rows=64: rel=0.000230241 non_finite=0
+routed F16 Q8_0 gate/up tokens=1 tile_rows=128: rel=0.000230241 non_finite=0
+routed F16 Q8_0 gate/up tokens=7 tile_rows=16: rel=0.000345282 non_finite=0
+routed F16 Q8_0 gate/up tokens=7 tile_rows=48: rel=0.000345282 non_finite=0
+routed F16 Q8_0 gate/up tokens=7 tile_rows=64: rel=0.000345282 non_finite=0
+routed F16 Q8_0 gate/up tokens=7 tile_rows=128: rel=0.000345282 non_finite=0
+routed F16 Q8_0 gate/up tokens=100 tile_rows=16: rel=0.000293954 non_finite=0
+routed F16 Q8_0 gate/up tokens=100 tile_rows=48: rel=0.000293954 non_finite=0
+routed F16 Q8_0 gate/up tokens=100 tile_rows=64: rel=0.000293954 non_finite=0
+routed F16 Q8_0 gate/up tokens=100 tile_rows=128: rel=0.000293954 non_finite=0
+routed F16 Q8_0 gate/up tokens=512 tile_rows=16: rel=0.000293954 non_finite=0
+routed F16 Q8_0 gate/up tokens=512 tile_rows=48: rel=0.000293954 non_finite=0
+routed F16 Q8_0 gate/up tokens=512 tile_rows=64: rel=0.000293954 non_finite=0
+routed F16 Q8_0 gate/up tokens=512 tile_rows=128: rel=0.000293954 non_finite=0
+routed F16 Q8_0 down tokens=1 tile_rows=16: rel=0.000269402 non_finite=0
+routed F16 Q8_0 down tokens=1 tile_rows=48: rel=0.000269402 non_finite=0
+routed F16 Q8_0 down tokens=1 tile_rows=64: rel=0.000269402 non_finite=0
+routed F16 Q8_0 down tokens=1 tile_rows=128: rel=0.000269402 non_finite=0
+routed F16 Q8_0 down tokens=7 tile_rows=16: rel=0.000268476 non_finite=0
+routed F16 Q8_0 down tokens=7 tile_rows=48: rel=0.000268476 non_finite=0
+routed F16 Q8_0 down tokens=7 tile_rows=64: rel=0.000268476 non_finite=0
+routed F16 Q8_0 down tokens=7 tile_rows=128: rel=0.000268476 non_finite=0
+routed F16 Q8_0 down tokens=100 tile_rows=16: rel=0.000281814 non_finite=0
+routed F16 Q8_0 down tokens=100 tile_rows=48: rel=0.000281814 non_finite=0
+routed F16 Q8_0 down tokens=100 tile_rows=64: rel=0.000281814 non_finite=0
+routed F16 Q8_0 down tokens=100 tile_rows=128: rel=0.000281814 non_finite=0
+routed F16 Q8_0 down tokens=512 tile_rows=16: rel=0.000281814 non_finite=0
+routed F16 Q8_0 down tokens=512 tile_rows=48: rel=0.000281814 non_finite=0
+routed F16 Q8_0 down tokens=512 tile_rows=64: rel=0.000281814 non_finite=0
+routed F16 Q8_0 down tokens=512 tile_rows=128: rel=0.000281814 non_finite=0
+routed F16 Q6_K gate/up tokens=1 tile_rows=16: rel=0.0003643 non_finite=0
+routed F16 Q6_K gate/up tokens=1 tile_rows=48: rel=0.0003643 non_finite=0
+routed F16 Q6_K gate/up tokens=1 tile_rows=64: rel=0.0003643 non_finite=0
+routed F16 Q6_K gate/up tokens=1 tile_rows=128: rel=0.0003643 non_finite=0
+routed F16 Q6_K gate/up tokens=7 tile_rows=16: rel=0.000282856 non_finite=0
+routed F16 Q6_K gate/up tokens=7 tile_rows=48: rel=0.000282856 non_finite=0
+routed F16 Q6_K gate/up tokens=7 tile_rows=64: rel=0.000282856 non_finite=0
+routed F16 Q6_K gate/up tokens=7 tile_rows=128: rel=0.000282856 non_finite=0
+routed F16 Q6_K gate/up tokens=100 tile_rows=16: rel=0.000398028 non_finite=0
+routed F16 Q6_K gate/up tokens=100 tile_rows=48: rel=0.000398028 non_finite=0
+routed F16 Q6_K gate/up tokens=100 tile_rows=64: rel=0.000398028 non_finite=0
+routed F16 Q6_K gate/up tokens=100 tile_rows=128: rel=0.000398028 non_finite=0
+routed F16 Q6_K gate/up tokens=512 tile_rows=16: rel=0.000363589 non_finite=0
+routed F16 Q6_K gate/up tokens=512 tile_rows=48: rel=0.000363589 non_finite=0
+routed F16 Q6_K gate/up tokens=512 tile_rows=64: rel=0.000363589 non_finite=0
+routed F16 Q6_K gate/up tokens=512 tile_rows=128: rel=0.000363589 non_finite=0
+routed F16 Q6_K down tokens=1 tile_rows=16: rel=0.000348513 non_finite=0
+routed F16 Q6_K down tokens=1 tile_rows=48: rel=0.000348513 non_finite=0
+routed F16 Q6_K down tokens=1 tile_rows=64: rel=0.000348513 non_finite=0
+routed F16 Q6_K down tokens=1 tile_rows=128: rel=0.000348513 non_finite=0
+routed F16 Q6_K down tokens=7 tile_rows=16: rel=0.000391429 non_finite=0
+routed F16 Q6_K down tokens=7 tile_rows=48: rel=0.000391429 non_finite=0
+routed F16 Q6_K down tokens=7 tile_rows=64: rel=0.000391429 non_finite=0
+routed F16 Q6_K down tokens=7 tile_rows=128: rel=0.000391429 non_finite=0
+routed F16 Q6_K down tokens=100 tile_rows=16: rel=0.000373161 non_finite=0
+routed F16 Q6_K down tokens=100 tile_rows=48: rel=0.000373161 non_finite=0
+routed F16 Q6_K down tokens=100 tile_rows=64: rel=0.000373161 non_finite=0
+routed F16 Q6_K down tokens=100 tile_rows=128: rel=0.000373161 non_finite=0
+routed F16 Q6_K down tokens=512 tile_rows=16: rel=0.000378913 non_finite=0
+routed F16 Q6_K down tokens=512 tile_rows=48: rel=0.000378913 non_finite=0
+routed F16 Q6_K down tokens=512 tile_rows=64: rel=0.000378913 non_finite=0
+routed F16 Q6_K down tokens=512 tile_rows=128: rel=0.000378913 non_finite=0
+routed F16 Q5_K gate/up tokens=1 tile_rows=16: rel=0.000518313 non_finite=0
+routed F16 Q5_K gate/up tokens=1 tile_rows=48: rel=0.000518313 non_finite=0
+routed F16 Q5_K gate/up tokens=7 tile_rows=16: rel=0.000512187 non_finite=0
+routed F16 Q5_K gate/up tokens=7 tile_rows=48: rel=0.000512187 non_finite=0
+routed F16 Q5_K gate/up tokens=100 tile_rows=16: rel=0.000473191 non_finite=0
+routed F16 Q5_K gate/up tokens=100 tile_rows=48: rel=0.000473191 non_finite=0
+routed F16 Q5_K gate/up tokens=512 tile_rows=16: rel=0.000473191 non_finite=0
+routed F16 Q5_K gate/up tokens=512 tile_rows=48: rel=0.000473191 non_finite=0
+routed F16 Q5_K down tokens=1 tile_rows=16: rel=0.000568873 non_finite=0
+routed F16 Q5_K down tokens=1 tile_rows=48: rel=0.000568873 non_finite=0
+routed F16 Q5_K down tokens=7 tile_rows=16: rel=0.000372732 non_finite=0
+routed F16 Q5_K down tokens=7 tile_rows=48: rel=0.000372732 non_finite=0
+routed F16 Q5_K down tokens=100 tile_rows=16: rel=0.000421738 non_finite=0
+routed F16 Q5_K down tokens=100 tile_rows=48: rel=0.000421738 non_finite=0
+routed F16 Q5_K down tokens=512 tile_rows=16: rel=0.000440167 non_finite=0
+routed F16 Q5_K down tokens=512 tile_rows=48: rel=0.000440167 non_finite=0
+routed F16 Q4_K gate/up tokens=1 tile_rows=16: rel=0.000374095 non_finite=0
+routed F16 Q4_K gate/up tokens=1 tile_rows=48: rel=0.000374095 non_finite=0
+routed F16 Q4_K gate/up tokens=7 tile_rows=16: rel=0.000489389 non_finite=0
+routed F16 Q4_K gate/up tokens=7 tile_rows=48: rel=0.000489389 non_finite=0
+routed F16 Q4_K gate/up tokens=100 tile_rows=16: rel=0.000460352 non_finite=0
+routed F16 Q4_K gate/up tokens=100 tile_rows=48: rel=0.000460352 non_finite=0
+routed F16 Q4_K gate/up tokens=512 tile_rows=16: rel=0.000460352 non_finite=0
+routed F16 Q4_K gate/up tokens=512 tile_rows=48: rel=0.000460352 non_finite=0
+routed F16 Q4_K down tokens=1 tile_rows=16: rel=0.000387502 non_finite=0
+routed F16 Q4_K down tokens=1 tile_rows=48: rel=0.000387502 non_finite=0
+routed F16 Q4_K down tokens=7 tile_rows=16: rel=0.000447143 non_finite=0
+routed F16 Q4_K down tokens=7 tile_rows=48: rel=0.000447143 non_finite=0
+routed F16 Q4_K down tokens=100 tile_rows=16: rel=0.000415723 non_finite=0
+routed F16 Q4_K down tokens=100 tile_rows=48: rel=0.000415723 non_finite=0
+routed F16 Q4_K down tokens=512 tile_rows=16: rel=0.000401208 non_finite=0
+routed F16 Q4_K down tokens=512 tile_rows=48: rel=0.000401208 non_finite=0
+routed F16 Q4_K Ornith gate/up tokens=1 tile_rows=16: rel=0.000556563 non_finite=0
+routed F16 Q4_K Ornith gate/up tokens=1 tile_rows=48: rel=0.000556563 non_finite=0
+routed F16 Q4_K Ornith gate/up tokens=7 tile_rows=16: rel=0.000519991 non_finite=0
+routed F16 Q4_K Ornith gate/up tokens=7 tile_rows=48: rel=0.000519991 non_finite=0
+routed F16 Q4_K Ornith gate/up tokens=100 tile_rows=16: rel=0.000490282 non_finite=0
+routed F16 Q4_K Ornith gate/up tokens=100 tile_rows=48: rel=0.000490282 non_finite=0
+routed F16 Q4_K Ornith gate/up tokens=512 tile_rows=16: rel=0.000487302 non_finite=0
+routed F16 Q4_K Ornith gate/up tokens=512 tile_rows=48: rel=0.000487302 non_finite=0
+routed F16 Q4_K Ornith down tokens=1 tile_rows=16: rel=0.000513493 non_finite=0
+routed F16 Q4_K Ornith down tokens=1 tile_rows=48: rel=0.000513493 non_finite=0
+routed F16 Q4_K Ornith down tokens=7 tile_rows=16: rel=0.000427213 non_finite=0
+routed F16 Q4_K Ornith down tokens=7 tile_rows=48: rel=0.000427213 non_finite=0
+routed F16 Q4_K Ornith down tokens=100 tile_rows=16: rel=0.000385834 non_finite=0
+routed F16 Q4_K Ornith down tokens=100 tile_rows=48: rel=0.000385834 non_finite=0
+routed F16 Q4_K Ornith down tokens=512 tile_rows=16: rel=0.000392784 non_finite=0
+routed F16 Q4_K Ornith down tokens=512 tile_rows=48: rel=0.000392784 non_finite=0
+routed F16 IQ3_S gate/up tokens=1 tile_rows=16: rel=0.000331321 non_finite=0
+routed F16 IQ3_S gate/up tokens=1 tile_rows=48: rel=0.000331321 non_finite=0
+routed F16 IQ3_S gate/up tokens=1 tile_rows=64: rel=0.000331321 non_finite=0
+routed F16 IQ3_S gate/up tokens=1 tile_rows=128: rel=0.000331321 non_finite=0
+routed F16 IQ3_S gate/up tokens=7 tile_rows=16: rel=0.000359781 non_finite=0
+routed F16 IQ3_S gate/up tokens=7 tile_rows=48: rel=0.000359781 non_finite=0
+routed F16 IQ3_S gate/up tokens=7 tile_rows=64: rel=0.000359781 non_finite=0
+routed F16 IQ3_S gate/up tokens=7 tile_rows=128: rel=0.000359781 non_finite=0
+routed F16 IQ3_S gate/up tokens=100 tile_rows=16: rel=0.000353444 non_finite=0
+routed F16 IQ3_S gate/up tokens=100 tile_rows=48: rel=0.000353444 non_finite=0
+routed F16 IQ3_S gate/up tokens=100 tile_rows=64: rel=0.000353444 non_finite=0
+routed F16 IQ3_S gate/up tokens=100 tile_rows=128: rel=0.000353444 non_finite=0
+routed F16 IQ3_S gate/up tokens=512 tile_rows=16: rel=0.000391819 non_finite=0
+routed F16 IQ3_S gate/up tokens=512 tile_rows=48: rel=0.000391819 non_finite=0
+routed F16 IQ3_S gate/up tokens=512 tile_rows=64: rel=0.000391819 non_finite=0
+routed F16 IQ3_S gate/up tokens=512 tile_rows=128: rel=0.000391819 non_finite=0
+routed F16 IQ3_S down tokens=1 tile_rows=16: rel=0.000384743 non_finite=0
+routed F16 IQ3_S down tokens=1 tile_rows=48: rel=0.000384743 non_finite=0
+routed F16 IQ3_S down tokens=1 tile_rows=64: rel=0.000384743 non_finite=0
+routed F16 IQ3_S down tokens=1 tile_rows=128: rel=0.000384743 non_finite=0
+routed F16 IQ3_S down tokens=7 tile_rows=16: rel=0.000398961 non_finite=0
+routed F16 IQ3_S down tokens=7 tile_rows=48: rel=0.000398961 non_finite=0
+routed F16 IQ3_S down tokens=7 tile_rows=64: rel=0.000398961 non_finite=0
+routed F16 IQ3_S down tokens=7 tile_rows=128: rel=0.000398961 non_finite=0
+routed F16 IQ3_S down tokens=100 tile_rows=16: rel=0.000415169 non_finite=0
+routed F16 IQ3_S down tokens=100 tile_rows=48: rel=0.000415169 non_finite=0
+routed F16 IQ3_S down tokens=100 tile_rows=64: rel=0.000415169 non_finite=0
+routed F16 IQ3_S down tokens=100 tile_rows=128: rel=0.000415169 non_finite=0
+routed F16 IQ3_S down tokens=512 tile_rows=16: rel=0.000408949 non_finite=0
+routed F16 IQ3_S down tokens=512 tile_rows=48: rel=0.000408949 non_finite=0
+routed F16 IQ3_S down tokens=512 tile_rows=64: rel=0.000408949 non_finite=0
+routed F16 IQ3_S down tokens=512 tile_rows=128: rel=0.000408949 non_finite=0
+routed F16 IQ4_XS gate/up tokens=1 tile_rows=16: rel=0.000391995 non_finite=0
+routed F16 IQ4_XS gate/up tokens=1 tile_rows=48: rel=0.000391995 non_finite=0
+routed F16 IQ4_XS gate/up tokens=1 tile_rows=64: rel=0.000391995 non_finite=0
+routed F16 IQ4_XS gate/up tokens=1 tile_rows=128: rel=0.000391995 non_finite=0
+routed F16 IQ4_XS gate/up tokens=7 tile_rows=16: rel=0.000326153 non_finite=0
+routed F16 IQ4_XS gate/up tokens=7 tile_rows=48: rel=0.000326153 non_finite=0
+routed F16 IQ4_XS gate/up tokens=7 tile_rows=64: rel=0.000326153 non_finite=0
+routed F16 IQ4_XS gate/up tokens=7 tile_rows=128: rel=0.000326153 non_finite=0
+routed F16 IQ4_XS gate/up tokens=100 tile_rows=16: rel=0.000407555 non_finite=0
+routed F16 IQ4_XS gate/up tokens=100 tile_rows=48: rel=0.000407555 non_finite=0
+routed F16 IQ4_XS gate/up tokens=100 tile_rows=64: rel=0.000407555 non_finite=0
+routed F16 IQ4_XS gate/up tokens=100 tile_rows=128: rel=0.000407555 non_finite=0
+routed F16 IQ4_XS gate/up tokens=512 tile_rows=16: rel=0.000407555 non_finite=0
+routed F16 IQ4_XS gate/up tokens=512 tile_rows=48: rel=0.000407555 non_finite=0
+routed F16 IQ4_XS gate/up tokens=512 tile_rows=64: rel=0.000407555 non_finite=0
+routed F16 IQ4_XS gate/up tokens=512 tile_rows=128: rel=0.000407555 non_finite=0
+routed F16 IQ4_XS down tokens=1 tile_rows=16: rel=0.00032349 non_finite=0
+routed F16 IQ4_XS down tokens=1 tile_rows=48: rel=0.00032349 non_finite=0
+routed F16 IQ4_XS down tokens=1 tile_rows=64: rel=0.00032349 non_finite=0
+routed F16 IQ4_XS down tokens=1 tile_rows=128: rel=0.00032349 non_finite=0
+routed F16 IQ4_XS down tokens=7 tile_rows=16: rel=0.000352413 non_finite=0
+routed F16 IQ4_XS down tokens=7 tile_rows=48: rel=0.000352413 non_finite=0
+routed F16 IQ4_XS down tokens=7 tile_rows=64: rel=0.000352413 non_finite=0
+routed F16 IQ4_XS down tokens=7 tile_rows=128: rel=0.000352413 non_finite=0
+routed F16 IQ4_XS down tokens=100 tile_rows=16: rel=0.000332642 non_finite=0
+routed F16 IQ4_XS down tokens=100 tile_rows=48: rel=0.000332642 non_finite=0
+routed F16 IQ4_XS down tokens=100 tile_rows=64: rel=0.000332642 non_finite=0
+routed F16 IQ4_XS down tokens=100 tile_rows=128: rel=0.000332642 non_finite=0
+routed F16 IQ4_XS down tokens=512 tile_rows=16: rel=0.000416475 non_finite=0
+routed F16 IQ4_XS down tokens=512 tile_rows=48: rel=0.000416475 non_finite=0
+routed F16 IQ4_XS down tokens=512 tile_rows=64: rel=0.000416475 non_finite=0
+routed F16 IQ4_XS down tokens=512 tile_rows=128: rel=0.000416475 non_finite=0
+routed F16 experts: OK
+routed pair Q8_0 tokens=100 pair_rows=64: rel=0.000483182 non_finite=0
+routed pair Q8_0 tokens=100 pair_rows=128: rel=0.000483182 non_finite=0
+routed pair Q8_0 tokens=512 pair_rows=64: rel=0.000483182 non_finite=0
+routed pair Q8_0 tokens=512 pair_rows=128: rel=0.000483182 non_finite=0
+routed pair Q8_0 tokens=1024 pair_rows=64: rel=0.000483182 non_finite=0
+routed pair Q8_0 tokens=1024 pair_rows=128: rel=0.000483182 non_finite=0
+routed pair Q6_K tokens=100 pair_rows=64: rel=0.000388406 non_finite=0
+routed pair Q6_K tokens=100 pair_rows=128: rel=0.000388406 non_finite=0
+routed pair Q6_K tokens=512 pair_rows=64: rel=0.000561019 non_finite=0
+routed pair Q6_K tokens=512 pair_rows=128: rel=0.000561019 non_finite=0
+routed pair Q6_K tokens=1024 pair_rows=64: rel=0.000561019 non_finite=0
+routed pair Q6_K tokens=1024 pair_rows=128: rel=0.000561019 non_finite=0
+routed pair Q5_K tokens=100 pair_rows=64: rel=0.000835819 non_finite=0
+routed pair Q5_K tokens=100 pair_rows=128: rel=0.000835819 non_finite=0
+routed pair Q5_K tokens=512 pair_rows=64: rel=0.000835819 non_finite=0
+routed pair Q5_K tokens=512 pair_rows=128: rel=0.000835819 non_finite=0
+routed pair Q5_K tokens=1024 pair_rows=64: rel=0.000835819 non_finite=0
+routed pair Q5_K tokens=1024 pair_rows=128: rel=0.000835819 non_finite=0
+routed pair Q4_K tokens=100 pair_rows=64: rel=0.00067671 non_finite=0
+routed pair Q4_K tokens=100 pair_rows=128: rel=0.00067671 non_finite=0
+routed pair Q4_K tokens=512 pair_rows=64: rel=0.00067671 non_finite=0
+routed pair Q4_K tokens=512 pair_rows=128: rel=0.00067671 non_finite=0
+routed pair Q4_K tokens=1024 pair_rows=64: rel=0.00067671 non_finite=0
+routed pair Q4_K tokens=1024 pair_rows=128: rel=0.00067671 non_finite=0
+routed pair IQ3_S tokens=100 pair_rows=64: rel=0.000612215 non_finite=0
+routed pair IQ3_S tokens=100 pair_rows=128: rel=0.000612215 non_finite=0
+routed pair IQ3_S tokens=512 pair_rows=64: rel=0.000394401 non_finite=0
+routed pair IQ3_S tokens=512 pair_rows=128: rel=0.000394401 non_finite=0
+routed pair IQ3_S tokens=1024 pair_rows=64: rel=0.000394401 non_finite=0
+routed pair IQ3_S tokens=1024 pair_rows=128: rel=0.000394401 non_finite=0
+routed pair IQ4_XS tokens=100 pair_rows=64: rel=0.000541965 non_finite=0
+routed pair IQ4_XS tokens=100 pair_rows=128: rel=0.000541965 non_finite=0
+routed pair IQ4_XS tokens=512 pair_rows=64: rel=0.000677098 non_finite=0
+routed pair IQ4_XS tokens=512 pair_rows=128: rel=0.000677098 non_finite=0
+routed pair IQ4_XS tokens=1024 pair_rows=64: rel=0.000677098 non_finite=0
+routed pair IQ4_XS tokens=1024 pair_rows=128: rel=0.000677098 non_finite=0
+routed pair: OK
+IQ CPU oracle IQ3_S worst_relative=0.000451561: OK
+IQ CPU oracle IQ4_XS worst_relative=0.000438793: OK
+decode batch Q8_0 rows=2: activation 0/8192 differ, down 0/32768 differ
+decode batch Q8_0 rows=3: activation 0/12288 differ, down 0/49152 differ
+decode batch Q8_0 rows=8: activation 0/32768 differ, down 0/131072 differ
+decode batch Q8_0 rows=9: activation 0/36864 differ, down 0/147456 differ
+decode batch Q8_0 rows=23: activation 0/94208 differ, down 0/376832 differ
+decode batch Q8_0 rows=64: activation 0/262144 differ, down 0/1048576 differ
+decode batch Q6_K rows=2: activation 0/8192 differ, down 0/32768 differ
+decode batch Q6_K rows=3: activation 0/12288 differ, down 0/49152 differ
+decode batch Q6_K rows=8: activation 0/32768 differ, down 0/131072 differ
+decode batch Q6_K rows=9: activation 0/36864 differ, down 0/147456 differ
+decode batch Q6_K rows=23: activation 0/94208 differ, down 0/376832 differ
+decode batch Q6_K rows=64: activation 0/262144 differ, down 0/1048576 differ
+decode batch Q5_K rows=2: activation 0/8192 differ, down 0/32768 differ
+decode batch Q5_K rows=3: activation 0/12288 differ, down 0/49152 differ
+decode batch Q5_K rows=8: activation 0/32768 differ, down 0/131072 differ
+decode batch Q5_K rows=9: activation 0/36864 differ, down 0/147456 differ
+decode batch Q5_K rows=23: activation 0/94208 differ, down 0/376832 differ
+decode batch Q5_K rows=64: activation 0/262144 differ, down 0/1048576 differ
+decode batch Q4_K rows=2: activation 0/8192 differ, down 0/32768 differ
+decode batch Q4_K rows=3: activation 0/12288 differ, down 0/49152 differ
+decode batch Q4_K rows=8: activation 0/32768 differ, down 0/131072 differ
+decode batch Q4_K rows=9: activation 0/36864 differ, down 0/147456 differ
+decode batch Q4_K rows=23: activation 0/94208 differ, down 0/376832 differ
+decode batch Q4_K rows=64: activation 0/262144 differ, down 0/1048576 differ
+decode batch IQ3_S rows=2: activation 0/8192 differ, down 0/32768 differ
+decode batch IQ3_S rows=3: activation 0/12288 differ, down 0/49152 differ
+decode batch IQ3_S rows=8: activation 0/32768 differ, down 0/131072 differ
+decode batch IQ3_S rows=9: activation 0/36864 differ, down 0/147456 differ
+decode batch IQ3_S rows=23: activation 0/94208 differ, down 0/376832 differ
+decode batch IQ3_S rows=64: activation 0/262144 differ, down 0/1048576 differ
+decode batch IQ4_XS rows=2: activation 0/8192 differ, down 0/32768 differ
+decode batch IQ4_XS rows=3: activation 0/12288 differ, down 0/49152 differ
+decode batch IQ4_XS rows=8: activation 0/32768 differ, down 0/131072 differ
+decode batch IQ4_XS rows=9: activation 0/36864 differ, down 0/147456 differ
+decode batch IQ4_XS rows=23: activation 0/94208 differ, down 0/376832 differ
+decode batch IQ4_XS rows=64: activation 0/262144 differ, down 0/1048576 differ
+decode batch invariance: OK
+shared path router: 0/2048 differ
+shared path shexp gate: 0/8 differ
+shared path shexp gate/up: 0/4096 differ
+shared path shexp down: 0/16384 differ
+shared path batch invariance: OK
+ssm path qkv: 0/32768 differ
+ssm path gate: 0/16384 differ
+ssm path alpha: 0/128 differ
+ssm path beta: 0/128 differ
+ssm path ssm_out: 0/8192 differ
+ssm path rms norm: 0/8192 differ
+ssm path batch invariance: OK
+qwen35ba3b_moe_ops_test: PASS
+
+Completed: 2026-10-29T19:41:13-04:00; error: <nil>

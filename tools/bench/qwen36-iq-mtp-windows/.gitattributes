@@ -1,0 +1,6 @@
+# Preserve byte-exact local evidence, including CRLF runtime logs.
+* -text
+# Unified patches contain intentional single-space context lines.
+results/*.patch -whitespace
+# Runtime transcripts retain their original Windows/progress whitespace.
+results/*.log -whitespace
